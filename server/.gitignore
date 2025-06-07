@@ -78,7 +78,7 @@ web_modules/
 .env.*  
 
 # Allow example environment file
-!.env.example
+!.env.template
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache

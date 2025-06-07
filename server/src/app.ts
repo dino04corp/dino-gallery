@@ -1,4 +1,3 @@
-require('dotenv').config({ path: '.env.local' });
 import express, { Request, Response, NextFunction, Application } from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -6,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import routes from './routes';
 import path from 'path';
 import connectMongoDB from './connection/mongodb';
+require('dotenv').config({});
 
 const app: Application = express();
 
