@@ -1,11 +1,13 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt'
-const Schema = mongoose.Schema;
+import { Schema, Document, Types, model } from 'mongoose';
+import bcrypt from 'bcrypt';
 
 export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
+  avatar?: string;
+  roleId: Types.ObjectId;
+  isActive: Boolean;
   comparePassword: (enteredPassword: string) => boolean;
 }
 
@@ -23,21 +25,33 @@ const userSchema = new Schema<IUser>({
     type: String,
     required: true,
   },
+  avatar: {
+    type: String,
+    default: '',
+  },
+  roleId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Role',
+    required: true,
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) {
-    next();
+  if (this.isModified('password')) {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
   }
-
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+  next();
 });
 
 userSchema.methods.comparePassword = async function (enteredPassword: string) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-const User = mongoose.model('User', userSchema);
+const User = model('User', userSchema);
 
 export default User;
