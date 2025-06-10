@@ -11,34 +11,39 @@ export interface IUser extends Document {
   comparePassword: (enteredPassword: string) => boolean;
 }
 
-const userSchema = new Schema<IUser>({
-  name: {
-    type: String,
-    required: true,
+const userSchema = new Schema<IUser>(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    avatar: {
+      type: String,
+      default: '',
+    },
+    roleId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Role',
+      required: true,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  avatar: {
-    type: String,
-    default: '',
-  },
-  roleId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Role',
-    required: true,
-  },
-  isActive: {
-    type: Boolean,
-    default: true,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 userSchema.pre('save', async function (next) {
   if (this.isModified('password')) {
@@ -52,6 +57,4 @@ userSchema.methods.comparePassword = async function (enteredPassword: string) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-const User = model('User', userSchema);
-
-export default User;
+export const User = model<IUser>('User', userSchema);
