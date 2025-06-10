@@ -1,9 +1,10 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Document, Types } from 'mongoose';
+import { IPermission } from './permission';
 
 export interface IRole extends Document {
   name: string; // ví dụ: 'superadmin', 'admin', 'editor', 'user'
   description?: string;
-  permissions: string[]; // ví dụ: ['user:create', 'user:read', 'user:update']
+  permissions: Types.ObjectId[];
   isSystemRole: boolean; // true nếu là role gốc không được xóa
 }
 
@@ -19,10 +20,12 @@ const roleSchema = new Schema<IRole>(
     description: {
       type: String,
     },
-    permissions: {
-      type: [String],
-      default: [],
-    },
+    permissions: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Permission',
+      },
+    ],
     isSystemRole: {
       type: Boolean,
       default: false,
