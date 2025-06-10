@@ -75,10 +75,19 @@ export const auth = {
 
         try {
             const user = await User.findOne({ email });
-            if (!user || !(await user.comparePassword(password))) {
+            console.log(`User found: ${user ? user.email : 'No user found'}`);
+
+            if (!user) {
                 res.status(401).json({
                     success: false,
-                    message: 'Incorrect email or password',
+                    message: 'Incorrect email',
+                });
+                return;
+            }
+            if (!(await user.comparePassword(password))) {
+                res.status(401).json({
+                    success: false,
+                    message: 'Incorrect password',
                 });
                 return;
             }

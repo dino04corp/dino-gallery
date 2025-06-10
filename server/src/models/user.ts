@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 
 export interface IUser extends Document {
     name: string;
+    username: string;
     email: string;
     password: string;
     avatar?: string;
@@ -16,6 +17,11 @@ const userSchema = new Schema<IUser>(
         name: {
             type: String,
             required: true,
+        },
+        username: {
+            type: String,
+            required: true,
+            unique: true,
         },
         email: {
             type: String,
@@ -47,13 +53,15 @@ const userSchema = new Schema<IUser>(
 
 userSchema.pre('save', async function (next) {
     if (this.isModified('password')) {
-        const salt = await bcrypt.genSalt(10);
-        this.password = await bcrypt.hash(this.password, salt);
+        this.password = await bcrypt.hash(this.password, 10);
     }
     next();
 });
 
-userSchema.methods.comparePassword = async function (enteredPassword: string) {
+userSchema.methods.comparePassword = async function (
+    this: IUser,
+    enteredPassword: string
+) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
 

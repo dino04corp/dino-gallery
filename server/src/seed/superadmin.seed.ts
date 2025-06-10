@@ -17,11 +17,11 @@ export async function seedSuperAdmin() {
     }
 
     const password = 'supersecurepassword'; // bạn có thể load từ ENV nếu cần
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new User({
         name: 'Super Admin',
+        username: 'superadmin',
         email,
         password: hashedPassword,
         roleId: role._id,
