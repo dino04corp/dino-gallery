@@ -1,3 +1,3 @@
 import Cloudinary from '../services/cloudinary';
 
-export { Cloudinary }
+export { Cloudinary };

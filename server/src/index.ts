@@ -21,24 +21,25 @@ httpServer.listen(HTTP_PORT, onListening);
 // https.createServer(options, app).listen(HTTPS_PORT, onListening);
 
 function onListening(this: Server): void {
-  // Specify 'this' as type 'http.Server'
-  const addr = this.address();
-  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr?.port;
-  console.info('Web server listening on ' + bind);
+    // Specify 'this' as type 'http.Server'
+    const addr = this.address();
+    const bind =
+        typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr?.port;
+    console.info('Web server listening on ' + bind);
 }
 
 function normalizePort(val: any): string | number | false {
-  // Declare types for the function parameters and return
-  const port = parseInt(val, 10);
-  if (isNaN(port)) return val; // named pipe
-  if (port >= 0) return port; // port number
-  return false;
+    // Declare types for the function parameters and return
+    const port = parseInt(val, 10);
+    if (isNaN(port)) return val; // named pipe
+    if (port >= 0) return port; // port number
+    return false;
 }
 
 const shutdown = (): void => {
-  // Declare return type of shutdown function
-  console.info('[shutdown]', new Date());
-  process.exit(0);
+    // Declare return type of shutdown function
+    console.info('[shutdown]', new Date());
+    process.exit(0);
 };
 
 // Handle process termination signals
@@ -47,17 +48,17 @@ process.on('SIGINT', shutdown);
 
 // Handle uncaught exceptions
 process.on('uncaughtException', (err: Error) => {
-  // Specify 'err' type as 'Error'
-  console.error('[uncaughtException]', err, err.stack);
+    // Specify 'err' type as 'Error'
+    console.error('[uncaughtException]', err, err.stack);
 });
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (reason: any, p: Promise<any>) => {
-  // Specify 'reason' as 'any' and 'p' as 'Promise<any>'
-  console.warn(
-    '[unhandledRejection] ',
-    p,
-    reason,
-    reason ? reason.stack : undefined
-  );
+    // Specify 'reason' as 'any' and 'p' as 'Promise<any>'
+    console.warn(
+        '[unhandledRejection] ',
+        p,
+        reason,
+        reason ? reason.stack : undefined
+    );
 });

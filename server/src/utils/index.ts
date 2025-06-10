@@ -3,7 +3,7 @@ const time = require('./time');
 const telegram = require('./telegram');
 
 module.exports = {
-  time,
-  // image,
-  telegram,
+    time,
+    // image,
+    telegram,
 };

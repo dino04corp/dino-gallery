@@ -1,9 +1,9 @@
-import {Request} from 'express'
-import multer, {FileFilterCallback} from 'multer'
-import {localData} from '../constant';
+import { Request } from 'express';
+import multer, { FileFilterCallback } from 'multer';
+import { localData } from '../constant';
 
-type DestinationCallback = (error: Error | null, destination: string) => void
-type FileNameCallback = (error: Error | null, filename: string) => void
+type DestinationCallback = (error: Error | null, destination: string) => void;
+type FileNameCallback = (error: Error | null, filename: string) => void;
 
 // The disk storage engine gives you full control on storing files to disk.
 const fileStorage = multer.diskStorage({
@@ -21,8 +21,8 @@ const fileStorage = multer.diskStorage({
         callback: FileNameCallback
     ): void => {
         callback(null, file.originalname);
-    }
-})
+    },
+});
 
 const fileFilter = (
     request: Request,
@@ -34,13 +34,16 @@ const fileFilter = (
         file.mimetype === 'image/jpg' ||
         file.mimetype === 'image/jpeg'
     ) {
-        callback(null, true)
+        callback(null, true);
     } else {
-        callback(null, false)
+        callback(null, false);
     }
-}
+};
 
-export const upload = multer({storage: fileStorage, fileFilter: fileFilter}).single('file');
+export const upload = multer({
+    storage: fileStorage,
+    fileFilter: fileFilter,
+}).single('file');
 
 // The memory storage engine stores the files in memory as Buffer objects.
 // const _memStorage = multer.memoryStorage();
@@ -57,4 +60,3 @@ export const upload = multer({storage: fileStorage, fileFilter: fileFilter}).sin
 //     const extName = path.extname(req.file.originalname).toString();
 //     return parser.format(extName, req.file.buffer);
 // };
-

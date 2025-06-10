@@ -1,7 +1,7 @@
 /** errors/BaseError.ts **/
 export type BaseContent = {
-    message: string,
-    context?: { [key: string]: any }
+    message: string;
+    context?: { [key: string]: any };
 };
 
 export abstract class BaseError extends Error {
@@ -17,7 +17,6 @@ export abstract class BaseError extends Error {
     }
 }
 
-
 /** errors/BadRequestError **/
 export default class BadRequestError extends BaseError {
     private static readonly _statusCode = 400;
@@ -25,10 +24,15 @@ export default class BadRequestError extends BaseError {
     private readonly _logging: boolean;
     private readonly _context: { [key: string]: any };
 
-    constructor(params?: {code?: number, message?: string, logging?: boolean, context?: { [key: string]: any }}) {
+    constructor(params?: {
+        code?: number;
+        message?: string;
+        logging?: boolean;
+        context?: { [key: string]: any };
+    }) {
         const { code, message, logging } = params || {};
 
-        super(message || "Bad request");
+        super(message || 'Bad request');
         this._code = code || BadRequestError._statusCode;
         this._logging = logging || false;
         this._context = params?.context || {};
