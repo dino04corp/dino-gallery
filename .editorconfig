@@ -15,3 +15,7 @@ max_line_length = 132
 [*.{js,ts,json}]
 indent_size = 4
 charset = utf-8
+# YAML files
+[*.{yaml,yml}]
+indent_size = 2
+charset = utf-8

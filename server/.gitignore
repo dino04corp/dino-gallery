@@ -22,4 +22,5 @@ go.work
 
 /vendor
 
-!.env.template
+# dotenv environment variable files
+.env
