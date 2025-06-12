@@ -1,27 +1,21 @@
-
-1. DIRECTORY STRUCTURE
-
-    project/
-    ├── src/
-    │   ├── config/          # Cấu hình cho Firebase hoặc MongoDB
-    │   │   ├── firebase.ts  # Kết nối Firebase
-    │   │   ├── mongodb.ts   # Kết nối MongoDB
-    │   ├── controllers/     # Xử lý logic request/response
-    │   │   ├── user.controller.ts
-    │   │   ├── post.controller.ts
-    │   ├── models/          # Các định nghĩa schema (cho MongoDB)
-    │   │   ├── user.model.ts
-    │   │   ├── post.model.ts
-    │   ├── routes/          # Khai báo route API
-    │   │   ├── index.ts
-    │   │   ├── user.routes.ts
-    │   │   ├── post.routes.ts
-    │   ├── utils/           # Các hàm tiện ích
-    │   │   ├── logger.ts
-    │   │   ├── constants.ts
-    │   ├── app.ts           # Khởi tạo ứng dụng Express
-    │   ├── server.ts        # Khởi chạy server
-    ├── .env                 # File chứa biến môi trường
-    ├── tsconfig.json        # Cấu hình TypeScript
-    ├── package.json         # Dependencies và script
-    └── README.md            # Hướng dẫn
+root/
+├── cmd/                    # Entry point
+│   └── server/             # main.go tại đây
+├── config/                 # Load env/config
+├── internal/               # Logic nội bộ
+│   ├── handler/            # Gin handlers
+│   ├── model/              # Structs (DB models, DTOs)
+│   ├── repository/         # DB access
+│   ├── service/            # Business logic
+│   └── router/             # Route definitions
+├── pkg/                    # Logic có thể tái sử dụng ngoài project
+├── migrations/             # SQL migration scripts
+├── .env                    # Config environment
+├── go.mod
+└── go.sum
+Migration: Dùng golang-migrate hoặc goose để quản lý schema.
+Logger: Dùng logrus hoặc zap cho log structured.
+Validation: Dùng github.com/go-playground/validator cho request validation.
+Authentication: Dùng JWT (github.com/golang-jwt/jwt/v4).
+Unit test: Dùng testify, viết test cho từng handler, service, repo.
+CI/CD: Thêm GitHub Actions hoặc GitLab CI cho lint + test.
