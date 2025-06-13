@@ -19,13 +19,13 @@ func Init(dbhost string, dbport int, dbuser, dbpass, dbname string, usessl bool)
 	)
 	log.Printf("Connecting to database with DSN: %s", dsn)
 
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(postgres.New(postgres.Config{
+		DSN:                  dsn,
+		PreferSimpleProtocol: true,
+	}), &gorm.Config{})
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatalf("Database connection failed: %v", err)
 	}
-	// if err != nil {
-	// 	panic("failed to connect to database: " + err.Error())
-	// }
 
 	return db
 }
