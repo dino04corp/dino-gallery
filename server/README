@@ -1,18 +1,30 @@
-root/
-├── cmd/                    # Entry point
-│   └── server/             # main.go tại đây
-├── config/                 # Load env/config
-├── internal/               # Logic nội bộ
-│   ├── handler/            # Gin handlers
-│   ├── model/              # Structs (DB models, DTOs)
-│   ├── repository/         # DB access
-│   ├── service/            # Business logic
-│   └── router/             # Route definitions
-├── pkg/                    # Logic có thể tái sử dụng ngoài project
-├── migrations/             # SQL migration scripts
-├── .env                    # Config environment
-├── go.mod
-└── go.sum
+Feature-Based Folder Structure:
+[Organize Like a Pro: A Simple Guide to Go Project Folder Structures](https://medium.com/@smart_byte_labs/organize-like-a-pro-a-simple-guide-to-go-project-folder-structures-e85e9c1769c2)
+project/
+├── cmd/
+│   └── app/
+│       └── main.go      # Main application logic
+├── internal/
+│   ├── user/            # Feature: User
+│   │   ├── handler/      # User-specific HTTP Handlers
+│   │   ├── service/      # User-specific Business Logic
+│   │   ├── repository/   # User-specific Data Access
+│   │   └── user.go       # User Model
+│   ├── product/         # Feature: Product
+│   │   ├── handler/      # Product-specific HTTP Handlers
+│   │   ├── service/      # Product-specific Business Logic
+│   │   ├── repository/   # Product-specific Data Access
+│   │   └── product.go    # Product Model
+│   ├── order/           # Feature: Order
+│   │   ├── handler/      # Order-specific HTTP Handlers
+│   │   ├── service/      # Order-specific Business Logic
+│   │   ├── repository/   # Order-specific Data Access
+│   │   └── order.go      # Order Model
+├── pkg/                 # Shared utilities or helpers
+│   └── logger.go        # Logging utilities
+├── configs/             # Configuration files
+├── go.mod               # Go module definition
+└── go.sum               # Go module checksum file
 Migration: Dùng golang-migrate hoặc goose để quản lý schema.
 Logger: Dùng logrus hoặc zap cho log structured.
 Validation: Dùng github.com/go-playground/validator cho request validation.

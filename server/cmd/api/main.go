@@ -2,6 +2,8 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+
+	"github.com/dino04corp/gallery-api/internal/user"
 )
 
 func main() {
@@ -11,17 +13,7 @@ func main() {
 			"message": "Hello, World!",
 		})
 	})
-	api := router.Group("/api")
-	{
-		api.GET("/users", getUsers)
-		api.POST("/users", createUser)
-	}
-	router.Run(":5689")
-}
-func getUsers(c *gin.Context) {
-	// Handler logic for getting users
-}
-
-func createUser(c *gin.Context) {
-	// Handler logic for creating a user
+	api := router.Group("/api/v1")
+	user.RegisterRoutes(api)
+	router.Run(":8001")
 }
