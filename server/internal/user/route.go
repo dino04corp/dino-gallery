@@ -2,15 +2,15 @@ package user
 
 import (
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 
 	"github.com/dino04corp/gallery-api/internal/user/handler"
 	"github.com/dino04corp/gallery-api/internal/user/repository"
 	"github.com/dino04corp/gallery-api/internal/user/service"
-	"github.com/dino04corp/gallery-api/pkg/db"
 )
 
-func RegisterRoutes(rg *gin.RouterGroup) {
-	repo := repository.NewUserRepo(db.DB)
+func RegisterRoutes(rg *gin.RouterGroup, db *gorm.DB) {
+	repo := repository.NewUserRepo(db)
 	svc := service.NewUserService(repo)
 	h := handler.NewUserHandler(svc)
 
