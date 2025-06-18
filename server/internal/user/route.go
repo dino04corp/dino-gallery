@@ -15,9 +15,9 @@ func RegisterRoutes(rg *gin.RouterGroup, db *gorm.DB) {
 	h := handler.NewUserHandler(svc)
 
 	group := rg.Group("/users")
-	group.POST("/", h.Create)
-	group.GET("/", h.GetAll)
-	group.GET("/:id", h.GetByID)
-	group.PUT("/:id", h.Update)
-	group.DELETE("/:id", h.Delete)
+	group.POST("/", h.CreateUser)
+	group.GET("/", h.ListUsers)
+	group.GET("/:id", h.GetUser)
+	group.PUT("/:id", h.UpdateUser)
+	group.DELETE("/:id", h.DeleteUser)
 }

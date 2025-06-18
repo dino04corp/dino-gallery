@@ -6,25 +6,33 @@ import (
 	"github.com/dino04corp/gallery-api/internal/user/model"
 )
 
-type UserRepo struct {
+type UserRepo interface {
+	Create(user *model.User) error
+	FindAll() ([]model.User, error)
+	FindByID(id uint) (*model.User, error)
+	Update(user *model.User) error
+	Delete(id string) error
+}
+
+type userRepo struct {
 	db *gorm.DB
 }
 
-func NewUserRepo(db *gorm.DB) *UserRepo {
-	return &UserRepo{db}
+func NewUserRepo(db *gorm.DB) UserRepo {
+	return &userRepo{db}
 }
 
-func (r *UserRepo) Create(user *model.User) error {
+func (r *userRepo) Create(user *model.User) error {
 	return r.db.Create(user).Error
 }
 
-func (r *UserRepo) GetAll() ([]model.User, error) {
+func (r *userRepo) FindAll() ([]model.User, error) {
 	var users []model.User
 	err := r.db.Find(&users).Error
 	return users, err
 }
 
-func (r *UserRepo) GetByID(id uint) (*model.User, error) {
+func (r *userRepo) FindByID(id uint) (*model.User, error) {
 	var user model.User
 	if err := r.db.First(&user, id).Error; err != nil {
 		return nil, err
@@ -32,10 +40,10 @@ func (r *UserRepo) GetByID(id uint) (*model.User, error) {
 	return &user, nil
 }
 
-func (r *UserRepo) Update(user *model.User) error {
+func (r *userRepo) Update(user *model.User) error {
 	return r.db.Save(user).Error
 }
 
-func (r *UserRepo) Delete(id string) error {
+func (r *userRepo) Delete(id string) error {
 	return r.db.Delete(&model.User{}, id).Error
 }

@@ -11,28 +11,28 @@ import (
 )
 
 type UserHandler struct {
-	svc *service.UserService
+	svc service.UserService
 }
 
-func NewUserHandler(s *service.UserService) *UserHandler {
+func NewUserHandler(s service.UserService) *UserHandler {
 	return &UserHandler{svc: s}
 }
 
-func (h *UserHandler) Create(c *gin.Context) {
+func (h *UserHandler) CreateUser(c *gin.Context) {
 	var user model.User
 	if err := c.ShouldBindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	if err := h.svc.Create(&user); err != nil {
+	if err := h.svc.CreateUser(&user); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 	c.JSON(http.StatusCreated, user)
 }
 
-func (h *UserHandler) GetAll(c *gin.Context) {
-	users, err := h.svc.GetAll()
+func (h *UserHandler) ListUsers(c *gin.Context) {
+	users, err := h.svc.ListUsers()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -40,7 +40,7 @@ func (h *UserHandler) GetAll(c *gin.Context) {
 	c.JSON(http.StatusOK, users)
 }
 
-func (h *UserHandler) GetByID(c *gin.Context) {
+func (h *UserHandler) GetUser(c *gin.Context) {
 	idParam := c.Param("id")
 
 	id, err := strconv.ParseUint(idParam, 10, 64)
@@ -49,7 +49,7 @@ func (h *UserHandler) GetByID(c *gin.Context) {
 		return
 	}
 
-	user, err := h.svc.GetByID(uint(id))
+	user, err := h.svc.GetUserByID(uint(id))
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
 		return
@@ -58,7 +58,7 @@ func (h *UserHandler) GetByID(c *gin.Context) {
 	c.JSON(http.StatusOK, user)
 }
 
-func (h *UserHandler) Update(c *gin.Context) {
+func (h *UserHandler) UpdateUser(c *gin.Context) {
 	idParam := c.Param("id")
 
 	var user model.User
@@ -74,16 +74,16 @@ func (h *UserHandler) Update(c *gin.Context) {
 	}
 
 	user.ID = uint(id) // Assuming ID is a string, adjust if it's a different type
-	if err := h.svc.Update(&user); err != nil {
+	if err := h.svc.UpdateUser(&user); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 	c.JSON(http.StatusOK, user)
 }
 
-func (h *UserHandler) Delete(c *gin.Context) {
+func (h *UserHandler) DeleteUser(c *gin.Context) {
 	id := c.Param("id")
-	if err := h.svc.Delete(id); err != nil {
+	if err := h.svc.DeleteUser(id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}

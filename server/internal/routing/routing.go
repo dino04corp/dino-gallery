@@ -11,8 +11,8 @@ type ServerData struct {
 	Router *gin.Engine
 }
 
-func RegisterRoutes(db ServerData) error {
-	api := db.Router.Group("/api/v1")
-	user.RegisterRoutes(api, db.DB)
+func RegisterRoutes(root ServerData) error {
+	api := root.Router.Group("/api/v1")
+	user.RegisterRoutes(api, root.DB)
 	return nil
 }
