@@ -5,6 +5,7 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/dino04corp/gallery-api/internal/auth"
+	"github.com/dino04corp/gallery-api/internal/middleware"
 	"github.com/dino04corp/gallery-api/internal/user"
 )
 
@@ -14,7 +15,10 @@ type ServerData struct {
 }
 
 func RegisterRoutes(root ServerData) error {
-	api := root.Router.Group("/api/v1")
+	router := root.Router
+	router.Use(middleware.CORS())
+
+	api := router.Group("/api/v1")
 	auth.RegisterRoutes(api, root.DB)
 	user.RegisterRoutes(api, root.DB)
 	return nil
