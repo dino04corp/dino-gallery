@@ -9,7 +9,8 @@ import (
 type UserRepo interface {
 	Create(user *model.User) error
 	FindAll() ([]model.User, error)
-	FindByID(id uint) (*model.User, error)
+	FindByID(id int) (*model.User, error)
+	FindByUsername(username string) (*model.User, error)
 	Update(user *model.User) error
 	Delete(id string) error
 }
@@ -32,9 +33,18 @@ func (r *userRepo) FindAll() ([]model.User, error) {
 	return users, err
 }
 
-func (r *userRepo) FindByID(id uint) (*model.User, error) {
+func (r *userRepo) FindByID(id int) (*model.User, error) {
 	var user model.User
-	if err := r.db.First(&user, id).Error; err != nil {
+	if err := r.db.Where("id = ?", id).First(&user).Error; err != nil {
+		return nil, err
+	}
+	return &user, nil
+
+}
+
+func (r *userRepo) FindByUsername(username string) (*model.User, error) {
+	var user model.User
+	if err := r.db.Where("username = ?", username).First(&user).Error; err != nil {
 		return nil, err
 	}
 	return &user, nil

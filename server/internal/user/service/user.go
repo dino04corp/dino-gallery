@@ -1,6 +1,8 @@
 package service
 
 import (
+	"strconv"
+
 	"github.com/dino04corp/gallery-api/internal/user/model"
 	"github.com/dino04corp/gallery-api/internal/user/repository"
 )
@@ -8,8 +10,8 @@ import (
 type UserService interface {
 	CreateUser(user *model.User) error
 	ListUsers() ([]model.User, error)
-	GetUserByID(id uint) (*model.User, error)
-	UpdateUser(user *model.User) error
+	GetUserByID(id string) (*model.User, error)
+	UpdateUser(id string, update *model.User) error
 	DeleteUser(id string) error
 }
 
@@ -29,11 +31,21 @@ func (s *userService) ListUsers() ([]model.User, error) {
 	return s.repo.FindAll()
 }
 
-func (s *userService) GetUserByID(id uint) (*model.User, error) {
-	return s.repo.FindByID(id)
+func (s *userService) GetUserByID(id string) (*model.User, error) {
+	_id, _ := strconv.Atoi(id)
+	return s.repo.FindByID(_id)
 }
 
-func (s *userService) UpdateUser(user *model.User) error {
+func (s *userService) UpdateUser(id string, update *model.User) error {
+	_id, _ := strconv.Atoi(id)
+	user, err := s.repo.FindByID(_id)
+	if err != nil {
+		return err
+	}
+
+	user.Name = update.Name
+	user.Email = update.Email
+	user.Username = update.Username
 	return s.repo.Update(user)
 }
 

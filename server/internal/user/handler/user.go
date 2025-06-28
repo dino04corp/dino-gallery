@@ -2,7 +2,6 @@ package handler
 
 import (
 	"net/http"
-	"strconv"
 
 	"github.com/gin-gonic/gin"
 
@@ -41,15 +40,9 @@ func (h *UserHandler) ListUsers(c *gin.Context) {
 }
 
 func (h *UserHandler) GetUser(c *gin.Context) {
-	idParam := c.Param("id")
+	id := c.Param("id")
 
-	id, err := strconv.ParseUint(idParam, 10, 64)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
-		return
-	}
-
-	user, err := h.svc.GetUserByID(uint(id))
+	user, err := h.svc.GetUserByID(id)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
 		return
@@ -59,7 +52,7 @@ func (h *UserHandler) GetUser(c *gin.Context) {
 }
 
 func (h *UserHandler) UpdateUser(c *gin.Context) {
-	idParam := c.Param("id")
+	id := c.Param("id")
 
 	var user model.User
 	if err := c.ShouldBindJSON(&user); err != nil {
@@ -67,14 +60,7 @@ func (h *UserHandler) UpdateUser(c *gin.Context) {
 		return
 	}
 
-	id, err := strconv.ParseUint(idParam, 10, 64)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
-		return
-	}
-
-	user.ID = uint(id) // Assuming ID is a string, adjust if it's a different type
-	if err := h.svc.UpdateUser(&user); err != nil {
+	if err := h.svc.UpdateUser(id, &user); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}

@@ -1,9 +1,11 @@
 package routing
 
 import (
-	"github.com/dino04corp/gallery-api/internal/user"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
+
+	"github.com/dino04corp/gallery-api/internal/auth"
+	"github.com/dino04corp/gallery-api/internal/user"
 )
 
 type ServerData struct {
@@ -13,6 +15,7 @@ type ServerData struct {
 
 func RegisterRoutes(root ServerData) error {
 	api := root.Router.Group("/api/v1")
+	auth.RegisterRoutes(api, root.DB)
 	user.RegisterRoutes(api, root.DB)
 	return nil
 }
