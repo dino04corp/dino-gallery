@@ -750,21 +750,18 @@
 										"disableBodyPruning": true
 									},
 									"request": {
-										"method": "POST",
+										"method": "GET",
 										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"cloud_name\": \"devmah\",\r\n    \"api_key\": \"656766715273594\",\r\n    \"api_secret\": \"326j81t-7wBtfVmkNFhqsRowHD0\"\r\n}"
-										},
 										"url": {
-											"raw": "{{baseUrl}}/api/v1/storages",
+											"raw": "{{baseUrl}}/api/v1/storages/options",
 											"host": [
 												"{{baseUrl}}"
 											],
 											"path": [
 												"api",
 												"v1",
-												"storages"
+												"storages",
+												"options"
 											]
 										}
 									},
