@@ -31,7 +31,7 @@ func (h *AuthHandler) Register(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"access_token": token,
+		"accessToken": token,
 	})
 }
 
@@ -48,6 +48,6 @@ func (h *AuthHandler) Login(c *gin.Context) {
 		return
 	}
 
-	res := dto.AuthResponse{Token: token}
+	res := dto.AuthResponse{AccessToken: token}
 	c.JSON(http.StatusOK, res)
 }

@@ -23,8 +23,9 @@ export default function LoginPage() {
     mutationFn: login,
     onSuccess: (response) => {
       // @ts-expect-error: response.data có kiểu unknown, cần ép kiểu
-      setAccessToken(response.data.data.accessToken);
-      // setRefreshToken(response.data.data.refreshToken);
+      const { data } = response.data;
+      setAccessToken(data.accessToken);
+      // setRefreshToken(data.refreshToken);
 
       navigate("/dashboard");
     },
@@ -54,7 +55,7 @@ export default function LoginPage() {
             Enter your username below to login to your account. <br />
             {mutation.isError && (
               <span className="text-red-500 text-sm">
-                {/* {mutation.error.message} */}
+                {mutation.error.message}
                 {"Something went wrong"}
               </span>
             )}
