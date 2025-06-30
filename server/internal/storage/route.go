@@ -21,4 +21,5 @@ func RegisterRoutes(rg *gin.RouterGroup, db *gorm.DB) {
 	// group.GET("/:id", h.GetStorage)
 	// group.PUT("/:id", h.UpdateStorage)
 	// group.DELETE("/:id", h.DeleteStorage)
+	group.POST("/:id/ping", h.PingStorage)
 }

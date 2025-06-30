@@ -56,3 +56,26 @@ func (h *StorageHandler) ListStorages(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"items": storages})
 }
+
+func (h *StorageHandler) PingStorage(c *gin.Context) {
+	id := c.Param("id")
+	if id == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Storage ID is required"})
+		return
+	}
+
+	err := h.svc.PingStorage(id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error":   gin.H{"code": "PING_FAILED", "message": err.Error()},
+			"success": false,
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"status":  "success",
+		"message": "Ping successful",
+		"success": true,
+	})
+}
