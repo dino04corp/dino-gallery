@@ -446,7 +446,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"email\": \"manh@gmail.com\",\n    \"name\": \"HugManh\",\n    \"username\": \"hugmah\",\n    \"role\": \"admin\",\n    \"password\": \"hungmanh\"\n}",
+											"raw": "{\n    \"email\": \"manhph@gmail.com\",\n    \"name\": \"manhph\",\n    \"username\": \"manhph\",\n    \"role\": \"admin\",\n    \"password\": \"hungmanh\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
