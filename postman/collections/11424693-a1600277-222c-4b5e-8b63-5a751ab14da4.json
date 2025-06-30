@@ -302,7 +302,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"username\": \"manhph\",\r\n    \"password\": \"hungmanh2909\"\r\n}",
+											"raw": "{\r\n    \"username\": \"manhph\",\r\n    \"password\": \"hungmanh\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1600,7 +1600,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "<string>",
+															"value": "6",
 															"description": "(Required) ID người dùng"
 														}
 													]
@@ -1687,7 +1687,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"email\": \"<email>\",\n    \"name\": \"<string>\",\n    \"username\": \"<string>\",\n    \"role\": \"<string>\",\n    \"password\": \"<string>\"\n}",
+											"raw": "{\n    \"email\": \"manh@gmail.com\",\n    \"name\": \"HugManh\",\n    \"username\": \"hugmah\",\n    \"role\": \"admin\",\n    \"password\": \"hungmanh\"\n}",
 											"options": {
 												"raw": {
 													"headerFamily": "json",
