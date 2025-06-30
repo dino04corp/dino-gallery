@@ -1,8 +1,12 @@
 package service
 
 import (
+	"context"
+	"encoding/json"
+	"fmt"
 	"strconv"
 
+	"github.com/cloudinary/cloudinary-go/v2"
 	"github.com/dino04corp/gallery-api/internal/storage/dto"
 	"github.com/dino04corp/gallery-api/internal/storage/model"
 	"github.com/dino04corp/gallery-api/internal/storage/repository"
@@ -59,6 +63,12 @@ func (s *storageService) GetStorage(id int) (*model.Storage, error) {
 	return storage, nil
 }
 
+type CloudinaryConfig struct {
+	CloudName string `json:"cloud_name"`
+	APIKey    string `json:"api_key"`
+	APISecret string `json:"api_secret"`
+}
+
 // PingStorage checks the connectivity of a storage service.
 func (s *storageService) PingStorage(id string) error {
 	_id, _ := strconv.Atoi(id)
@@ -66,23 +76,31 @@ func (s *storageService) PingStorage(id string) error {
 	if err != nil {
 		return err
 	}
+	config := storage.Config
 
 	// Here you would implement the logic to ping the storage service.
 	// This is a placeholder for demonstration purposes.
 	switch storage.Provider {
 	case constant.Cloudinary:
-		// {
-		// 	// Simulate a successful ping for Cloudinary
-		// 	service := cloudinary.New(req.CloudName, req.APIKey, req.APISecret)
-
-		// 	message, err := service.Ping()
-		// 	if err != nil {
-		// 		return err
-		// 	}
-		// 	return nil
-		// }
-	default:
+		var cldCfg CloudinaryConfig
+		configBytes, err := json.Marshal(config) // Vì datatypes.JSONMap là map[string]interface{}
+		if err != nil {
+			return fmt.Errorf("failed to marshal config: %w", err)
+		}
+		if err := json.Unmarshal(configBytes, &cldCfg); err != nil {
+			return fmt.Errorf("invalid cloudinary config: %w", err)
+		}
+		// Simulate a ping to Cloudinary
+		cld, err := cloudinary.NewFromParams(cldCfg.CloudName, cldCfg.APIKey, cldCfg.APISecret)
+		if err != nil {
+			return fmt.Errorf("failed to create Cloudinary client: %w", err)
+		}
+		_, err = cld.Admin.Ping(context.Background())
+		if err != nil {
+			return fmt.Errorf("failed to ping Cloudinary: %w", err)
+		}
 		return nil
+	default:
+		return fmt.Errorf("unsupported storage provider: %s", storage.Provider)
 	}
-	return nil
 }
