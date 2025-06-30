@@ -742,7 +742,7 @@
 									"response": []
 								},
 								{
-									"name": "Add configure storage Copy",
+									"name": "Get Storage Options",
 									"id": "11424693-fd7b159f-766d-45ef-88b9-306f46754ff8",
 									"protocolProfileBehavior": {
 										"strictSSL": false,
