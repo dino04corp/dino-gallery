@@ -6,6 +6,7 @@ import (
 
 	"github.com/dino04corp/gallery-api/internal/auth"
 	"github.com/dino04corp/gallery-api/internal/middleware"
+	"github.com/dino04corp/gallery-api/internal/storage"
 	"github.com/dino04corp/gallery-api/internal/user"
 )
 
@@ -21,5 +22,6 @@ func RegisterRoutes(root ServerData) error {
 	api := router.Group("/api/v1")
 	auth.RegisterRoutes(api, root.DB)
 	user.RegisterRoutes(api, root.DB)
+	storage.RegisterRoutes(api, root.DB)
 	return nil
 }
