@@ -27,5 +27,7 @@ func Init(dbhost string, dbport int, dbuser, dbpass, dbname string, usessl bool)
 		log.Fatalf("Database connection failed: %v", err)
 	}
 
+	log.Println("Database connection established successfully")
+
 	return db
 }
