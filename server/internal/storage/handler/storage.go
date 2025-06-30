@@ -46,3 +46,13 @@ func (h *StorageHandler) CreateStorage(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, gin.H{"message": "Storage created successfully"})
 }
+
+func (h *StorageHandler) ListStorages(c *gin.Context) {
+	storages, err := h.svc.ListStorages()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve storages"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"items": storages})
+}

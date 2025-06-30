@@ -17,7 +17,7 @@ func RegisterRoutes(rg *gin.RouterGroup, db *gorm.DB) {
 	group := rg.Group("/storages")
 	group.GET("/options", h.GetStorageOptions)
 	group.POST("/", h.CreateStorage)
-	// group.GET("/", h.ListStorages)
+	group.GET("/", h.ListStorages)
 	// group.GET("/:id", h.GetStorage)
 	// group.PUT("/:id", h.UpdateStorage)
 	// group.DELETE("/:id", h.DeleteStorage)

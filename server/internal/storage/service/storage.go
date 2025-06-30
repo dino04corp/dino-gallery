@@ -8,7 +8,7 @@ import (
 // StorageService defines the interface for storage service operations.
 type StorageService interface {
 	CreateStorage(storage *dto.CreateStorageRequest) error
-	// FindAll() ([]model.Storage, error)
+	ListStorages() ([]dto.StorageResponse, error)
 	// FindByID(id int) (*model.Storage, error)
 	// Update(storage *model.Storage) error
 	// Delete(id int) error
@@ -28,4 +28,19 @@ func NewStorageService(r repository.StorageRepo) StorageService {
 func (s *storageService) CreateStorage(storage *dto.CreateStorageRequest) error {
 	newStorage := storage.ToModel()
 	return s.repo.Create(newStorage)
+}
+
+// ListStorages retrieves all storage records from the database.
+func (s *storageService) ListStorages() ([]dto.StorageResponse, error) {
+	storages, err := s.repo.FindAll()
+	if err != nil {
+		return nil, err
+	}
+
+	var storageResponses []dto.StorageResponse
+	for _, storage := range storages {
+		storageResponses = append(storageResponses, *dto.ToResponse(&storage))
+	}
+
+	return storageResponses, nil
 }
