@@ -1,0 +1,1863 @@
+{
+	"info": {
+		"_postman_id": "11424693-a1600277-222c-4b5e-8b63-5a751ab14da4",
+		"name": "Gallery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "v1",
+					"item": [
+						{
+							"name": "auth",
+							"item": [
+								{
+									"name": "Forgot password",
+									"id": "11424693-8be1287b-ce13-4436-afa9-3c438feb45c9",
+									"protocolProfileBehavior": {
+										"strictSSL": false,
+										"followRedirects": true,
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/auth/forgot-password",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"auth",
+												"forgot-password"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "11424693-d430aacc-844f-4d2f-9fdf-62096c4c4995",
+											"name": "Failure",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"email\": \"manh@gmail.cm\"\r\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/auth/forgot-password",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"auth",
+														"forgot-password"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												},
+												{
+													"key": "Content-Security-Policy",
+													"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+												},
+												{
+													"key": "Cross-Origin-Opener-Policy",
+													"value": "same-origin"
+												},
+												{
+													"key": "Cross-Origin-Resource-Policy",
+													"value": "same-origin"
+												},
+												{
+													"key": "Origin-Agent-Cluster",
+													"value": "?1"
+												},
+												{
+													"key": "Referrer-Policy",
+													"value": "no-referrer"
+												},
+												{
+													"key": "Strict-Transport-Security",
+													"value": "max-age=15552000; includeSubDomains"
+												},
+												{
+													"key": "X-Content-Type-Options",
+													"value": "nosniff"
+												},
+												{
+													"key": "X-DNS-Prefetch-Control",
+													"value": "off"
+												},
+												{
+													"key": "X-Download-Options",
+													"value": "noopen"
+												},
+												{
+													"key": "X-Frame-Options",
+													"value": "SAMEORIGIN"
+												},
+												{
+													"key": "X-Permitted-Cross-Domain-Policies",
+													"value": "none"
+												},
+												{
+													"key": "X-XSS-Protection",
+													"value": "0"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "80"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"50-QjEi1f4l6PZxmzu6OpM23tB5+Vo\""
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 20 Nov 2024 16:00:05 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\"message\":\"Email hướng dẫn đặt lại mật khẩu đã được gửi\"}"
+										},
+										{
+											"id": "11424693-7aa7dc3e-85ce-4c1a-a6d6-ad6163437f6c",
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"email\": \"manh@gmail.com\"\r\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/auth/forgot-password",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"auth",
+														"forgot-password"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												},
+												{
+													"key": "Content-Security-Policy",
+													"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+												},
+												{
+													"key": "Cross-Origin-Opener-Policy",
+													"value": "same-origin"
+												},
+												{
+													"key": "Cross-Origin-Resource-Policy",
+													"value": "same-origin"
+												},
+												{
+													"key": "Origin-Agent-Cluster",
+													"value": "?1"
+												},
+												{
+													"key": "Referrer-Policy",
+													"value": "no-referrer"
+												},
+												{
+													"key": "Strict-Transport-Security",
+													"value": "max-age=15552000; includeSubDomains"
+												},
+												{
+													"key": "X-Content-Type-Options",
+													"value": "nosniff"
+												},
+												{
+													"key": "X-DNS-Prefetch-Control",
+													"value": "off"
+												},
+												{
+													"key": "X-Download-Options",
+													"value": "noopen"
+												},
+												{
+													"key": "X-Frame-Options",
+													"value": "SAMEORIGIN"
+												},
+												{
+													"key": "X-Permitted-Cross-Domain-Policies",
+													"value": "none"
+												},
+												{
+													"key": "X-XSS-Protection",
+													"value": "0"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "80"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"50-QjEi1f4l6PZxmzu6OpM23tB5+Vo\""
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 20 Nov 2024 16:00:26 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\"message\":\"Email hướng dẫn đặt lại mật khẩu đã được gửi\"}"
+										}
+									]
+								},
+								{
+									"name": "Show profile",
+									"id": "11424693-9d20b99e-edb7-44d8-a41f-55cd745ddd39",
+									"protocolProfileBehavior": {
+										"strictSSL": false,
+										"followRedirects": true,
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/profile",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"profile"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Login",
+									"id": "11424693-94e99f19-7655-407a-ab3a-e9df1e38fbdb",
+									"protocolProfileBehavior": {
+										"strictSSL": false,
+										"followRedirects": true,
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"manhph\",\r\n    \"password\": \"hungmanh2909\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/auth/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"auth",
+												"login"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "11424693-9eec1d1f-18f4-44ae-b860-4a4823a56937",
+											"name": "Logged in",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"email\": \"manh@gmail.com\",\r\n    \"password\": \"HungManh-2909\"\r\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/auth/login",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"auth",
+														"login"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												},
+												{
+													"key": "Content-Security-Policy",
+													"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+												},
+												{
+													"key": "Cross-Origin-Opener-Policy",
+													"value": "same-origin"
+												},
+												{
+													"key": "Cross-Origin-Resource-Policy",
+													"value": "same-origin"
+												},
+												{
+													"key": "Origin-Agent-Cluster",
+													"value": "?1"
+												},
+												{
+													"key": "Referrer-Policy",
+													"value": "no-referrer"
+												},
+												{
+													"key": "Strict-Transport-Security",
+													"value": "max-age=15552000; includeSubDomains"
+												},
+												{
+													"key": "X-Content-Type-Options",
+													"value": "nosniff"
+												},
+												{
+													"key": "X-DNS-Prefetch-Control",
+													"value": "off"
+												},
+												{
+													"key": "X-Download-Options",
+													"value": "noopen"
+												},
+												{
+													"key": "X-Frame-Options",
+													"value": "SAMEORIGIN"
+												},
+												{
+													"key": "X-Permitted-Cross-Domain-Policies",
+													"value": "none"
+												},
+												{
+													"key": "X-XSS-Protection",
+													"value": "0"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "358"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"166-bDg3JnclL8gMZKMJlfqvLaqKLHs\""
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 20 Nov 2024 15:52:20 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NzNlMDFkZWNkNzVhZjVmZTM2YzliMjkiLCJlbWFpbCI6Im1hbmhAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MzIxMTc5NDAsImV4cCI6MTczMjIwNDM0MH0.wnm_RVOLkipQZ5KWTbkT7BMRlGGGRQ9zVia6hwf9XGc\",\"user\":{\"id\":\"673e01decd75af5fe36c9b29\",\"email\":\"manh@gmail.com\",\"firstName\":\"manh\",\"lastName\":\"hug\",\"role\":\"user\"}}"
+										}
+									]
+								},
+								{
+									"name": "Register",
+									"id": "11424693-3675cee6-a311-4c7c-bc7b-cb6325bd8d42",
+									"protocolProfileBehavior": {
+										"strictSSL": false,
+										"followRedirects": true,
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"manh@gmail.com\",\n    \"name\": \"HugManh\",\n    \"username\": \"hugmah\",\n    \"role\": \"admin\",\n    \"password\": \"hungmanh\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/auth/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"auth",
+												"register"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "11424693-28d3180e-0408-47ed-94e4-ee66a38e98ef",
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"manh\",\r\n    \"username\": \"manhph\",\r\n    \"email\": \"manh@gmail.com\",\r\n    \"password\": \"hungmanh2909\",\r\n    \"roles\": \"admin\"\r\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/auth/register",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"auth",
+														"register"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												},
+												{
+													"key": "Content-Security-Policy",
+													"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+												},
+												{
+													"key": "Cross-Origin-Opener-Policy",
+													"value": "same-origin"
+												},
+												{
+													"key": "Cross-Origin-Resource-Policy",
+													"value": "same-origin"
+												},
+												{
+													"key": "Origin-Agent-Cluster",
+													"value": "?1"
+												},
+												{
+													"key": "Referrer-Policy",
+													"value": "no-referrer"
+												},
+												{
+													"key": "Strict-Transport-Security",
+													"value": "max-age=15552000; includeSubDomains"
+												},
+												{
+													"key": "X-Content-Type-Options",
+													"value": "nosniff"
+												},
+												{
+													"key": "X-DNS-Prefetch-Control",
+													"value": "off"
+												},
+												{
+													"key": "X-Download-Options",
+													"value": "noopen"
+												},
+												{
+													"key": "X-Frame-Options",
+													"value": "SAMEORIGIN"
+												},
+												{
+													"key": "X-Permitted-Cross-Domain-Policies",
+													"value": "none"
+												},
+												{
+													"key": "X-XSS-Protection",
+													"value": "0"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "193"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"c1-R/2kgP9vWSbEBtUwytFTwhTlUQ8\""
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 27 Oct 2024 08:15:21 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\"username\":\"manhph\",\"name\":\"manh\",\"email\":\"manh@gmail.com\",\"password\":\"$2b$10$.VknzQW13z6nrsxj5zs7Pelkse3dp2pTr/v3ofj0WJcbrZfva/BVO\",\"roles\":[\"admin\"],\"_id\":\"671df699976ecd295e133ef5\",\"__v\":0}"
+										}
+									]
+								}
+							],
+							"id": "11424693-7cae35d8-9f08-4702-a848-0b22487c9bcf",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "688fabd0-70fe-417a-8b4e-e3f4304e7140"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "c6d5f45e-bff5-423b-9f77-b8c40dc16f88"
+									}
+								}
+							]
+						},
+						{
+							"name": "storages",
+							"item": [
+								{
+									"name": "{storage_id}",
+									"item": [
+										{
+											"name": "Get storage by id",
+											"id": "11424693-820b2df2-d542-4ec6-b52e-405dc701bb5b",
+											"protocolProfileBehavior": {
+												"strictSSL": false,
+												"followRedirects": true,
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/storages/:storage_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"storages",
+														":storage_id"
+													],
+													"variable": [
+														{
+															"id": "657138ae-654f-45fe-907d-a07c0da3e738",
+															"key": "storage_id",
+															"value": "99ea3440-e868-4ab4-bd94-e1166d35f0be"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Update storage",
+											"id": "11424693-7a391e5f-3aa7-48fd-90ee-689425bb3c61",
+											"protocolProfileBehavior": {
+												"strictSSL": false,
+												"followRedirects": true,
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"cloud_name\": \"devmah\",\r\n    \"api_key\": \"656766715273594\",\r\n    \"api_secret\": \"326j81t-7wBtfVmkNFhqsRowHD0\"\r\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/storages/:storage_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"storages",
+														":storage_id"
+													],
+													"variable": [
+														{
+															"id": "381f8a4e-4c70-4b01-b598-c7b1791463aa",
+															"key": "storage_id",
+															"value": "99ea3440-e868-4ab4-bd94-e1166d35f0be"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete storage",
+											"id": "11424693-71acd541-841f-4102-941a-bde64f88f7c6",
+											"protocolProfileBehavior": {
+												"strictSSL": false,
+												"followRedirects": true,
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/storages/:storage_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"storages",
+														":storage_id"
+													],
+													"variable": [
+														{
+															"id": "525aa980-5f17-47c6-b4a0-d518b17cc993",
+															"key": "storage_id",
+															"value": "99ea3440-e868-4ab4-bd94-e1166d35f0be"
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									],
+									"id": "11424693-9c21eb56-1390-448d-be7a-14d1b5d3927e"
+								},
+								{
+									"name": "Add configure storage",
+									"id": "11424693-369d6bfe-e390-4719-8401-a2ca1488871b",
+									"protocolProfileBehavior": {
+										"strictSSL": false,
+										"followRedirects": true,
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"cloud_name\": \"devmah\",\r\n    \"api_key\": \"656766715273594\",\r\n    \"api_secret\": \"326j81t-7wBtfVmkNFhqsRowHD0\"\r\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/storages",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"storages"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get list storages",
+									"id": "11424693-f0745824-eb28-4aa6-b050-88c9ff37a515",
+									"protocolProfileBehavior": {
+										"strictSSL": false,
+										"followRedirects": true,
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/storages?cloud_storage=cloudinary",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"storages"
+											],
+											"query": [
+												{
+													"key": "cloud_storage",
+													"value": "cloudinary",
+													"description": "cloud_storage sửa lại thành storage_provider\n"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Check connection cloud storage",
+									"id": "11424693-1e8d998e-2e1c-4149-8ea6-e703dd5156fd",
+									"protocolProfileBehavior": {
+										"strictSSL": false,
+										"followRedirects": true,
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/storage/:cloud_storage/ping",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"storage",
+												":cloud_storage",
+												"ping"
+											],
+											"variable": [
+												{
+													"id": "8b0765db-6792-424e-8f59-96336f4f834f",
+													"key": "cloud_storage"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"id": "11424693-84bfcf7c-f4af-44be-a3b9-ff5e9260ab0f",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "acdf9357-0619-41b5-a8e0-0b6ea29014eb"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "b31f5579-3364-4705-963f-72ede1a75e9f"
+									}
+								}
+							]
+						},
+						{
+							"name": "resources",
+							"item": [
+								{
+									"name": "{resource_id}",
+									"item": [
+										{
+											"name": "Upload a resource",
+											"id": "11424693-779402ff-86bd-4764-9459-e8bfb1347aa3",
+											"protocolProfileBehavior": {
+												"strictSSL": false,
+												"followRedirects": true,
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "file",
+															"type": "file",
+															"src": "file://D:\\github-HugManh\\s3-aws\\data\\img\\16756502&22891-tttt.jpg"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/resources/:storage_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"resources",
+														":storage_id"
+													],
+													"variable": [
+														{
+															"id": "f7f69d99-5542-4366-bbe4-70a06222078d",
+															"key": "storage_id",
+															"value": "849813bf-b055-443a-bae3-e561c3ca9df0"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"id": "11424693-74242485-6239-4432-832e-27de8fbb82de",
+													"name": "400 Bad Request",
+													"originalRequest": {
+														"method": "POST",
+														"header": [],
+														"body": {
+															"mode": "formdata",
+															"formdata": [
+																{
+																	"key": "file",
+																	"type": "text"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/resources/:storage_id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"resources",
+																":storage_id"
+															],
+															"variable": [
+																{
+																	"key": "storage_id"
+																}
+															]
+														}
+													},
+													"status": "Bad Request",
+													"code": 400,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json",
+															"name": "Content-Type",
+															"description": "",
+															"type": "text"
+														}
+													],
+													"cookie": [],
+													"responseTime": null,
+													"body": "{\n    \"success\": false,\n    \"error\": {\n        \"code\": 400,\n        \"message\": \"No file uploaded!\"\n    }\n}"
+												},
+												{
+													"id": "11424693-20477871-1ead-4414-8587-d2e46d8068f3",
+													"name": "500 Internal Server Error",
+													"originalRequest": {
+														"method": "POST",
+														"header": [],
+														"body": {
+															"mode": "formdata",
+															"formdata": [
+																{
+																	"key": "file",
+																	"type": "text"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/resources/:storage_id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"resources",
+																":storage_id"
+															],
+															"variable": [
+																{
+																	"key": "storage_id"
+																}
+															]
+														}
+													},
+													"status": "Internal Server Error",
+													"code": 500,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Cache-Control",
+															"value": "public, max-age=0, must-revalidate"
+														},
+														{
+															"key": "Content-Length",
+															"value": "56"
+														},
+														{
+															"key": "Content-Type",
+															"value": "text/plain; charset=utf-8"
+														},
+														{
+															"key": "Date",
+															"value": "Tue, 16 Apr 2024 04:12:30 GMT"
+														},
+														{
+															"key": "Server",
+															"value": "Vercel"
+														},
+														{
+															"key": "Strict-Transport-Security",
+															"value": "max-age=63072000; includeSubDomains; preload"
+														},
+														{
+															"key": "X-Vercel-Error",
+															"value": "FUNCTION_INVOCATION_FAILED"
+														},
+														{
+															"key": "X-Vercel-Id",
+															"value": "hkg1::fxzkh-1713240749474-13ef329a029e"
+														}
+													],
+													"cookie": [],
+													"responseTime": null,
+													"body": "A server error has occurred\n\nFUNCTION_INVOCATION_FAILED\n"
+												}
+											]
+										},
+										{
+											"name": "Get a resource",
+											"id": "11424693-254ceab7-dc21-4302-a1ff-ae9e416a6319",
+											"protocolProfileBehavior": {
+												"strictSSL": false,
+												"followRedirects": true,
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/resources/:resource_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"resources",
+														":resource_id"
+													],
+													"variable": [
+														{
+															"id": "18699c54-efd3-476a-a0c7-45f1a54bf752",
+															"key": "resource_id",
+															"value": "788fdfee-7dba-4eef-b437-f855ff17ed01"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"id": "11424693-1f5a4b6b-cdc5-4c84-8142-dcb6e86db3d4",
+													"name": "Success",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/resources/:resource_id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"resources",
+																":resource_id"
+															],
+															"variable": [
+																{
+																	"key": "resource_id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [],
+													"cookie": [],
+													"responseTime": null,
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "Delete a resource",
+											"id": "11424693-d1513551-6697-47ae-a8cc-4d13a4c438cb",
+											"protocolProfileBehavior": {
+												"strictSSL": false,
+												"followRedirects": true,
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/resources/:resource_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"resources",
+														":resource_id"
+													],
+													"variable": [
+														{
+															"id": "cf0f861c-7f30-4364-bbfc-18203357b282",
+															"key": "resource_id",
+															"value": "bdcb2be8-38c4-4c1c-8751-213a20c7a01c"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"id": "11424693-3044e19d-41ea-4276-9c44-2dbed76d9017",
+													"name": "Success",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/resources/:resource_id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"resources",
+																":resource_id"
+															],
+															"variable": [
+																{
+																	"key": "resource_id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [],
+													"cookie": [],
+													"responseTime": null,
+													"body": ""
+												}
+											]
+										}
+									],
+									"id": "11424693-5436b172-bfb8-4f7a-a012-0a08c31c6082"
+								},
+								{
+									"name": "Get list resource",
+									"id": "11424693-be91bb7e-5ce9-45c4-bca7-9c6902b6cfd2",
+									"protocolProfileBehavior": {
+										"strictSSL": false,
+										"followRedirects": true,
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/resources",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"resources"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "11424693-83e631b5-6d2e-4bbb-9111-d7aa25f852b3",
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/resources",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"resources"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [],
+											"cookie": [],
+											"responseTime": null,
+											"body": ""
+										}
+									]
+								}
+							],
+							"id": "11424693-7a89ae27-f9f2-47c9-8524-8cea5ef3fc36",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "95f6d384-06de-4fec-9532-5fe96f892dc6"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [],
+										"type": "text/javascript",
+										"packages": {},
+										"id": "45c9a83c-98f8-4316-a3e6-63b1a25ccf90"
+									}
+								}
+							]
+						},
+						{
+							"name": "users",
+							"item": [
+								{
+									"name": "{id}",
+									"item": [
+										{
+											"name": "reset-password",
+											"item": [
+												{
+													"name": "Đặt lại mật khẩu người dùng",
+													"id": "11424693-30f245e8-15da-4b10-920c-eccface3b7d8",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "{{bearerToken}}",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id/reset-password",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id",
+																"reset-password"
+															],
+															"variable": [
+																{
+																	"key": "id",
+																	"value": "<string>",
+																	"description": "(Required) ID người dùng"
+																}
+															]
+														}
+													},
+													"response": [
+														{
+															"id": "11424693-7f891540-7753-4b4f-9da9-f68351d60bf0",
+															"name": "Đặt lại mật khẩu thành công",
+															"originalRequest": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Accept",
+																		"value": "application/json"
+																	},
+																	{
+																		"description": "Added as a part of security scheme: bearer",
+																		"key": "Authorization",
+																		"value": "Bearer <token>"
+																	}
+																],
+																"url": {
+																	"raw": "{{baseUrl}}/api/users/:id/reset-password",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"users",
+																		":id",
+																		"reset-password"
+																	],
+																	"variable": [
+																		{
+																			"key": "id"
+																		}
+																	]
+																}
+															},
+															"status": "OK",
+															"code": 200,
+															"_postman_previewlanguage": "json",
+															"header": [
+																{
+																	"key": "Content-Type",
+																	"value": "application/json"
+																}
+															],
+															"cookie": [],
+															"responseTime": null,
+															"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"password\": \"<string>\"\n  }\n}"
+														}
+													]
+												}
+											],
+											"id": "11424693-bf225419-1916-4007-b3e8-41ab9f286ffb"
+										},
+										{
+											"name": "Lấy thông tin người dùng theo id",
+											"id": "11424693-4b0dfe95-7ea1-4d3a-abbd-c2c6ea6e553d",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{bearerToken}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "<uuid>",
+															"description": "(Required) ID người dùng"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"id": "11424693-7e894831-1d34-415e-807c-d001907177d9",
+													"name": "Lấy thông tin thành công",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id",
+																	"value": "<string>",
+																	"description": "(Required) ID người dùng"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Access-Control-Allow-Origin",
+															"value": "*"
+														},
+														{
+															"key": "Content-Type",
+															"value": "application/json",
+															"description": "",
+															"type": "text"
+														},
+														{
+															"key": "Content-Length",
+															"value": "276"
+														},
+														{
+															"key": "ETag",
+															"value": "W/\"114-XRSAWEUejc5LFlk0T/Sevtody7E\""
+														},
+														{
+															"key": "Vary",
+															"value": "Accept-Encoding"
+														},
+														{
+															"key": "Date",
+															"value": "Wed, 23 Apr 2025 15:20:53 GMT"
+														},
+														{
+															"key": "Connection",
+															"value": "keep-alive"
+														},
+														{
+															"key": "Keep-Alive",
+															"value": "timeout=5"
+														}
+													],
+													"cookie": [],
+													"responseTime": null,
+													"body": "{\n    \"success\": \"<boolean>\",\n    \"message\": \"<string>\",\n    \"data\": {\n        \"email\": \"<string>\",\n        \"name\": \"<string>\",\n        \"role\": \"<string>\",\n        \"group\": \"<string>\",\n        \"isActive\": \"<boolean>\",\n        \"createdAt\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"id\": \"<string>\"\n    }\n}"
+												}
+											]
+										},
+										{
+											"name": "Cập nhật thông tin người dùng",
+											"id": "11424693-a3c8f56a-ac7c-41a5-89f7-6e9f14e9a065",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{bearerToken}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"group\": \"<string>\",\n    \"role\": \"<string>\",\n    \"isActive\": \"<boolean>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "<string>",
+															"description": "(Required) ID người dùng"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"id": "11424693-ba2d619a-55ea-4bd6-959b-a5872dca307b",
+													"name": "Cập nhật thành công",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"key": "Authorization",
+																"value": "Bearer <token>",
+																"description": "Added as a part of security scheme: bearer"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"group\": \"<string>\",\n    \"role\": \"<string>\",\n    \"isActive\": \"<boolean>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id",
+																	"value": ""
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json",
+															"description": "",
+															"type": "text"
+														}
+													],
+													"cookie": [],
+													"responseTime": null,
+													"body": "{\n    \"success\": \"<boolean>\",\n    \"message\": \"<string>\",\n    \"data\": {\n        \"name\": \"<string>\",\n        \"email\": \"<string>\",\n        \"group\": \"<string>\",\n        \"role\": \"<string>\",\n        \"isActive\": \"<boolean>\"\n    }\n}"
+												}
+											]
+										},
+										{
+											"name": "Xóa người dùng",
+											"id": "11424693-c72240bb-5fb8-47b8-8560-bcf9a6b5cd82",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{bearerToken}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "<string>",
+															"description": "(Required) ID người dùng"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"id": "11424693-d768df97-1798-4201-911c-f5239813b1ba",
+													"name": "Xóa người dùng thành công",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [
+															{
+																"key": "Authorization",
+																"value": "Bearer <token>",
+																"description": "Added as a part of security scheme: bearer"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id",
+																	"value": ""
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json",
+															"description": "",
+															"type": "text"
+														}
+													],
+													"cookie": [],
+													"responseTime": null,
+													"body": "{\r\n    \"success\": \"<boolean>\",\r\n    \"message\": \"<string>\"\r\n}"
+												}
+											]
+										}
+									],
+									"id": "11424693-54d50422-d808-4ca2-91d1-43e2952e7c28"
+								},
+								{
+									"name": "Tạo mới người dùng",
+									"id": "11424693-3b37f1cf-b067-41e7-91ea-aad867684ec6",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{bearerToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"<email>\",\n    \"name\": \"<string>\",\n    \"username\": \"<string>\",\n    \"role\": \"<string>\",\n    \"password\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/users",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"users"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "11424693-64d5b350-e5aa-4919-bee5-4f66b8957952",
+											"name": "Tạo người dùng thành công",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"email\": \"<email>\",\n    \"name\": \"<string>\",\n    \"username\": \"<string>\",\n    \"role\": \"<string>\",\n    \"password\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/users",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"users"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"email\": \"<string>\",\n    \"name\": \"<string>\",\n    \"role\": \"<string>\",\n    \"isActivate\": \"<boolean>\",\n    \"password\": \"<string>\"\n  }\n}"
+										}
+									]
+								},
+								{
+									"name": "Lấy danh sách người dùng",
+									"id": "11424693-a3e4a2c9-d1c6-42bb-9450-85dd6997a29a",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{bearerToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/users",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"users"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "11424693-b716a9b9-bbac-4366-a2b5-34b14313a6ee",
+											"name": "Lấy danh sách thành công",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/users",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"users"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"group\": \"<string>\",\n      \"role\": \"<string>\",\n      \"isActive\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"group\": \"<string>\",\n      \"role\": \"<string>\",\n      \"isActive\": \"<boolean>\"\n    }\n  ]\n}"
+										}
+									]
+								}
+							],
+							"id": "11424693-5580ce0d-049f-4088-8820-10ac964299c5"
+						}
+					],
+					"id": "11424693-15afd102-1c50-4080-b6d1-7bf82a5f3a4e"
+				}
+			],
+			"id": "11424693-3a8ee7e9-cb51-42e4-839b-4040d1b57a90"
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://gallery-dino-api.vercel.app/",
+			"type": "string"
+		}
+	]
+}
