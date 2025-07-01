@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"strconv"
 
 	"github.com/cloudinary/cloudinary-go/v2"
 	"github.com/dino04corp/gallery-api/internal/storage/dto"
@@ -17,7 +16,7 @@ import (
 type StorageService interface {
 	CreateStorage(storage *dto.CreateStorageRequest) error
 	ListStorages() ([]dto.StorageResponse, error)
-	GetStorage(id int) (*model.Storage, error)
+	GetStorage(id string) (*model.Storage, error)
 	// Update(storage *model.Storage) error
 	// Delete(id int) error
 	PingStorage(id string) error
@@ -55,7 +54,7 @@ func (s *storageService) ListStorages() ([]dto.StorageResponse, error) {
 }
 
 // GetStorage retrieves a storage record by its ID.
-func (s *storageService) GetStorage(id int) (*model.Storage, error) {
+func (s *storageService) GetStorage(id string) (*model.Storage, error) {
 	storage, err := s.repo.FindByID(id)
 	if err != nil {
 		return nil, err
@@ -71,8 +70,7 @@ type CloudinaryConfig struct {
 
 // PingStorage checks the connectivity of a storage service.
 func (s *storageService) PingStorage(id string) error {
-	_id, _ := strconv.Atoi(id)
-	storage, err := s.repo.FindByID(_id)
+	storage, err := s.repo.FindByID(id)
 	if err != nil {
 		return err
 	}

@@ -2,37 +2,80 @@ package service
 
 import (
 	"context"
-	"mime/multipart"
+	"encoding/json"
+	"fmt"
+	"time"
 
-	"github.com/dino04corp/gallery-api/internal/upload/model"
-	"github.com/dino04corp/gallery-api/internal/upload/repository"
+	"github.com/cloudinary/cloudinary-go/v2"
+	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
+	storageRepo "github.com/dino04corp/gallery-api/internal/storage/repository"
+	"github.com/dino04corp/gallery-api/internal/upload/dto"
+	"github.com/dino04corp/gallery-api/pkg/constant"
 )
 
 // UploadService defines the interface for upload services.
 type UploadService interface {
-	Upload(ctx context.Context, file *multipart.FileHeader) (model.Upload, error)
+	Upload(id string, uploadFile *dto.UploadFile) (string, error)
 }
 
 // uploadService implements the UploadService interface.
 type uploadService struct {
-	repo repository.UploadRepository
+	// upload  uploadRepo.UploadRepo
+	storage storageRepo.StorageRepo
 }
 
 // NewUploadService creates a new instance of uploadService.
-func NewUploadService(repo repository.UploadRepository) UploadService {
+func NewUploadService(storageRepo storageRepo.StorageRepo) UploadService {
 	return &uploadService{
-		repo: repo,
+		// upload:  uploadRepo.UploadRepo,
+		storage: storageRepo,
 	}
 }
 
+type CloudinaryConfig struct {
+	CloudName string `json:"cloud_name"`
+	APIKey    string `json:"api_key"`
+	APISecret string `json:"api_secret"`
+}
+
 // Upload handles the file upload logic.
-func (s *uploadService) Upload(ctx context.Context, file *multipart.FileHeader) (model.Upload, error) {
-	// Call the repository to save the file.
-	uploadedFile, err := s.repo.Upload(ctx, file)
+func (s *uploadService) Upload(id string, uploadFile *dto.UploadFile) (string, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	storage, err := s.storage.FindByID(id)
 	if err != nil {
-		return model.Upload{}, err
+		return "", fmt.Errorf("Storage dont exists!")
 	}
 
-	// Return the uploaded file information.
-	return uploadedFile, nil
+	switch storage.Provider {
+	case constant.Cloudinary:
+		var cldCfg CloudinaryConfig
+		configBytes, err := json.Marshal(storage.Config)
+		if err != nil {
+			return "", fmt.Errorf("failed to marshal config: %w", err)
+		}
+		if err := json.Unmarshal(configBytes, &cldCfg); err != nil {
+			return "", fmt.Errorf("invalid cloudinary config: %w", err)
+		}
+		//create cloudinary instance
+		cld, err := cloudinary.NewFromParams(cldCfg.CloudName, cldCfg.APIKey, cldCfg.APISecret)
+		if err != nil {
+			return "", err
+		}
+		//upload file
+		uploadParam, err := cld.Upload.Upload(ctx, uploadFile.File, uploader.UploadParams{Folder: "tesssst"})
+		if err != nil {
+			return "", err
+		}
+		// // Save metadata to the database.
+		// uploadedFile, err := s.repo.Upload(ctx, file)
+		// if err != nil {
+		// 	return model.Upload{}, err
+		// }
+
+		return uploadParam.SecureURL, nil
+	}
+
+	return "", nil
 }
