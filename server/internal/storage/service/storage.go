@@ -4,8 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"reflect"
+	"time"
 
 	"github.com/cloudinary/cloudinary-go/v2"
+	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 	"github.com/dino04corp/gallery-api/internal/storage/dto"
 	"github.com/dino04corp/gallery-api/internal/storage/model"
 	"github.com/dino04corp/gallery-api/internal/storage/repository"
@@ -20,6 +23,7 @@ type StorageService interface {
 	// Update(storage *model.Storage) error
 	// Delete(id int) error
 	PingStorage(id string) error
+	Upload(id string, uploadFile *dto.UploadFile) (string, error)
 }
 
 // storageService implements the StorageService interface.
@@ -100,5 +104,53 @@ func (s *storageService) PingStorage(id string) error {
 		return nil
 	default:
 		return fmt.Errorf("unsupported storage provider: %s", storage.Provider)
+	}
+}
+
+// Upload handles the file upload logic.
+func (s *storageService) Upload(id string, uploadFile *dto.UploadFile) (string, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	storage, err := s.repo.FindByID(id)
+	if err != nil {
+		return "", fmt.Errorf("storage dont exists")
+	}
+
+	fmt.Println("storage ", storage.Provider)
+
+	switch storage.Provider {
+	case constant.Cloudinary:
+		var cldCfg CloudinaryConfig
+		configBytes, err := json.Marshal(storage.Config)
+		if err != nil {
+			return "", fmt.Errorf("failed to marshal config: %w", err)
+		}
+		if err := json.Unmarshal(configBytes, &cldCfg); err != nil {
+			return "", fmt.Errorf("invalid cloudinary config: %w", err)
+		}
+		// create cloudinary instance
+		cld, err := cloudinary.NewFromParams(cldCfg.CloudName, cldCfg.APIKey, cldCfg.APISecret)
+		if err != nil {
+			return "", err
+		}
+
+		fmt.Printf("File: type %v size %d", reflect.TypeOf(uploadFile.File), uploadFile.File.Size)
+		if uploadFile.File.Size > 0 {
+			// upload file
+			uploadParam, err := cld.Upload.Upload(ctx, uploadFile.File, uploader.UploadParams{Folder: "tesssst"})
+			if err != nil {
+				return "", err
+			}
+			// // Save metadata to the database.
+			// uploadedFile, err := s.repo.Upload(ctx, file)
+			// if err != nil {
+			// 	return model.Upload{}, err
+			// }
+			return uploadParam.SecureURL, nil
+		}
+        return "", fmt.Errorf("empty file")
+	default:
+		return "", fmt.Errorf("unsupport provider %v", storage.Provider)
 	}
 }
