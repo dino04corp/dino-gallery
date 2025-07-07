@@ -55,8 +55,10 @@ export default function LoginPage() {
             Enter your username below to login to your account. <br />
             {mutation.isError && (
               <span className="text-red-500 text-sm">
-                {mutation.error.message}
-                {"Something went wrong"}
+                {(() => {
+                  const err = mutation.error as any;
+                  return err?.response?.data?.error || err?.message || "Something went wrong";
+                })()}
               </span>
             )}
           </CardDescription>
