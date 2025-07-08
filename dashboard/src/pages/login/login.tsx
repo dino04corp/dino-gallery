@@ -8,11 +8,9 @@ import { useMutation } from "@tanstack/react-query";
 import { login } from "@/services/api/AuthService";
 import { LoaderCircle } from "lucide-react";
 import { useAuthStore } from "@/store";
-// import { getActions } from '@/store';
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  // const { setAccessToken, setRefreshToken } = getActions();
   const { setAccessToken } = useAuthStore();
 
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -22,10 +20,11 @@ export default function LoginPage() {
   const mutation = useMutation({
     mutationFn: login,
     onSuccess: (response) => {
-      // @ts-expect-error: response.data có kiểu unknown, cần ép kiểu
-      const { data } = response.data;
-      setAccessToken(data.accessToken);
-      // setRefreshToken(data.refreshToken);
+      const data = response.data?.data;
+      if (!data?.access_token) return alert("Invalid token!");
+      console.log("------- ", data, data.access_token);
+
+      setAccessToken(data.access_token);
 
       navigate("/dashboard");
     },
@@ -46,6 +45,13 @@ export default function LoginPage() {
     mutation.mutate({ username, password });
   };
 
+  const errorMessage = mutation.isError
+    ? (() => {
+        const err = mutation.error as any;
+        return err?.response?.data?.error || err?.message || "Something went wrong";
+      })()
+    : null;
+
   return (
     <section className="flex justify-center items-center h-screen">
       <Card className="w-full max-w-sm">
@@ -53,14 +59,6 @@ export default function LoginPage() {
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>
             Enter your username below to login to your account. <br />
-            {mutation.isError && (
-              <span className="text-red-500 text-sm">
-                {(() => {
-                  const err = mutation.error as any;
-                  return err?.response?.data?.error || err?.message || "Something went wrong";
-                })()}
-              </span>
-            )}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -68,7 +66,7 @@ export default function LoginPage() {
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="username">Username</Label>
-                <Input id="username" type="username" placeholder="username" ref={usernameRef} required />
+                <Input id="username" type="username" placeholder="Username" ref={usernameRef} required />
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
@@ -77,11 +75,20 @@ export default function LoginPage() {
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" ref={passwordRef} required />
+                <Input id="password" type="password" placeholder="Password" ref={passwordRef} required />
               </div>
+
+              {errorMessage && <div className="text-red-500 text-sm -mt-2">{errorMessage}</div>}
+
               <Button type="submit" className="w-full" disabled={mutation.isPending}>
-                {mutation.isPending && <LoaderCircle className="animate-spin" />}
-                <span>Login</span>
+                {mutation.isPending ? (
+                  <>
+                    <LoaderCircle className="animate-spin mr-2 w-4 h-4" />
+                    Logging in...
+                  </>
+                ) : (
+                  "Login"
+                )}
               </Button>
               <Button variant="outline" className="w-full" disabled={mutation.isPending}>
                 Login with Google

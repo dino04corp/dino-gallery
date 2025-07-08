@@ -1,0 +1,172 @@
+import type { StorageConfig } from "@/types/storage";
+
+export const mockStorages: StorageConfig[] = [
+    {
+        id: "storage-1",
+        name: "Amazon S3 Production",
+        type: "s3",
+        isActive: true,
+        createdAt: "2024-07-01T12:00:00Z",
+        lastSync: "2024-07-08T10:30:00Z",
+        config: {
+            region: "us-east-1",
+            bucket: "my-app-production",
+            accessKey: "AKIA***************",
+        },
+        usage: {
+            used: 245,
+            total: 1000,
+            unit: "GB",
+        },
+        health: {
+            status: "healthy",
+            lastCheck: "2024-07-08T11:00:00Z",
+            responseTime: 120,
+        },
+        analytics: {
+            uploadCount: 1250,
+            downloadCount: 3400,
+            totalFiles: 15600,
+            avgResponseTime: 145,
+            uptime: 99.8,
+            dailyUsage: [
+                { date: "2024-07-01", uploads: 45, downloads: 120, storage: 240 },
+                { date: "2024-07-02", uploads: 52, downloads: 135, storage: 245 },
+            ],
+        },
+    },
+    {
+        id: "storage-2",
+        name: "Google Cloud Backup",
+        type: "gcs",
+        isActive: false,
+        createdAt: "2024-07-03T09:30:00Z",
+        lastSync: "2024-07-07T14:20:00Z",
+        config: {
+            projectId: "my-project-backup",
+            bucket: "gcs-backup-bucket",
+            keyFile: "service-account.json",
+        },
+        usage: {
+            used: 1.2,
+            total: 5,
+            unit: "TB",
+        },
+        health: {
+            status: "healthy",
+            lastCheck: "2024-07-08T11:00:00Z",
+            responseTime: 120,
+        },
+        analytics: {
+            uploadCount: 1250,
+            downloadCount: 3400,
+            totalFiles: 15600,
+            avgResponseTime: 145,
+            uptime: 99.8,
+            dailyUsage: [
+                { date: "2024-07-01", uploads: 45, downloads: 120, storage: 240 },
+                { date: "2024-07-02", uploads: 52, downloads: 135, storage: 245 },
+            ],
+        },
+    },
+    {
+        id: "storage-3",
+        name: "Local Development",
+        type: "local",
+        isActive: true,
+        createdAt: "2024-07-05T16:45:00Z",
+        lastSync: "2024-07-08T11:15:00Z",
+        config: {
+            path: "/mnt/storage/dev",
+            permissions: "755",
+        },
+        usage: {
+            used: 89,
+            total: 500,
+            unit: "GB",
+        },
+        health: {
+            status: "healthy",
+            lastCheck: "2024-07-08T11:00:00Z",
+            responseTime: 120,
+        },
+        analytics: {
+            uploadCount: 1250,
+            downloadCount: 3400,
+            totalFiles: 15600,
+            avgResponseTime: 145,
+            uptime: 99.8,
+            dailyUsage: [
+                { date: "2024-07-01", uploads: 45, downloads: 120, storage: 240 },
+                { date: "2024-07-02", uploads: 52, downloads: 135, storage: 245 },
+            ],
+        },
+    },
+    {
+        id: "storage-4",
+        name: "Azure Blob Storage",
+        type: "azure",
+        isActive: true,
+        createdAt: "2024-07-06T08:20:00Z",
+        lastSync: "2024-07-08T09:45:00Z",
+        config: {
+            accountName: "myazurestorage",
+            containerName: "documents",
+            connectionString: "DefaultEndpointsProtocol=https...",
+        },
+        usage: {
+            used: 156,
+            total: 1000,
+            unit: "GB",
+        },
+        health: {
+            status: "healthy",
+            lastCheck: "2024-07-08T11:00:00Z",
+            responseTime: 120,
+        },
+        analytics: {
+            uploadCount: 1250,
+            downloadCount: 3400,
+            totalFiles: 15600,
+            avgResponseTime: 145,
+            uptime: 99.8,
+            dailyUsage: [
+                { date: "2024-07-01", uploads: 45, downloads: 120, storage: 240 },
+                { date: "2024-07-02", uploads: 52, downloads: 135, storage: 245 },
+            ],
+        },
+    },
+    {
+        id: "storage-5",
+        name: "Dropbox Business",
+        type: "dropbox",
+        isActive: false,
+        createdAt: "2024-07-04T11:10:00Z",
+        config: {
+            appKey: "dropbox_app_key",
+            appSecret: "dropbox_app_secret",
+            accessToken: "sl.***************",
+        },
+        usage: {
+            used: 2.8,
+            total: 5,
+            unit: "TB",
+        },
+        health: {
+            status: "healthy",
+            lastCheck: "2024-07-08T11:00:00Z",
+            responseTime: 120,
+        },
+        analytics: {
+            uploadCount: 1250,
+            downloadCount: 3400,
+            totalFiles: 15600,
+            avgResponseTime: 145,
+            uptime: 99.8,
+            dailyUsage: [
+                { date: "2024-07-01", uploads: 45, downloads: 120, storage: 240 },
+                { date: "2024-07-02", uploads: 52, downloads: 135, storage: 245 },
+            ],
+        },
+    },
+];

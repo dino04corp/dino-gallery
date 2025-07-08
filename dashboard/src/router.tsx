@@ -15,6 +15,10 @@ const router = createBrowserRouter([
         path: 'dashboard',
         element: <DashboardPage />,
       },
+      {
+        path: '/storages',
+        element: <StoragePage />,
+      },
     ],
   },
   {
@@ -30,10 +34,6 @@ const router = createBrowserRouter([
         element: <RegisterPage />,
       },
     ],
-  },
-  {
-    path: '/storages',
-    element: <StoragePage />,
   },
 ]);
 

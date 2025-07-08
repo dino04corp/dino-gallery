@@ -1,68 +1,71 @@
-import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
-import { jwtDecode } from 'jwt-decode';
-import { z } from 'zod';
+import { create } from "zustand";
+import { devtools, persist } from "zustand/middleware";
+import { jwtDecode } from "jwt-decode";
+import { z } from "zod";
 
 // const roles = z.enum(['admin', 'user']);
 
 // type Role = z.infer<typeof roles>;
 
 const TokenDataSchema = z.object({
-  userId: z.string(),
-  // roles,
+    userId: z.string(),
+    // roles,
 });
 
 type TokenData = z.infer<typeof TokenDataSchema>;
 
 export interface AuthState {
-  accessToken: string | null;
-  accessTokenData: TokenData | null;
-  refreshToken: string | null;
-  isAuthenticated: boolean;
-  setAccessToken: (data: string) => void;
-  clearTokens: () => void;
+    accessToken: string | null;
+    accessTokenData: TokenData | null;
+    refreshToken: string | null;
+    isAuthenticated: boolean;
+    setAccessToken: (data: string) => void;
+    clearTokens: () => void;
 }
 
-export const decodeAccessToken = (accessToken: string) =>
-  TokenDataSchema.parse(jwtDecode<TokenData>(accessToken));
+export const decodeAccessToken = (accessToken: string) => {
+    const decoded = jwtDecode<TokenData>(accessToken);
+    console.log("Decoded JWT:", decoded);
+    return TokenDataSchema.parse(decoded);
+};
 
 export const useAuthStore = create<AuthState>()(
-  devtools(
-    persist(
-      (set) => ({
-        accessToken: null,
-        accessTokenData: null,
-        refreshToken: null,
-        isAuthenticated: false,
-        setAccessToken: (accessToken: string | null) => {
-          const accessTokenData = (() => {
-            try {
-              return accessToken ? decodeAccessToken(accessToken) : null;
-            } catch (error) {
-              console.error(error);
-              return null;
-            }
-          })();
+    devtools(
+        persist(
+            (set) => ({
+                accessToken: null,
+                accessTokenData: null,
+                refreshToken: null,
+                isAuthenticated: false,
+                setAccessToken: (accessToken: string | null) => {
+                    const accessTokenData = (() => {
+                        try {
+                            return accessToken ? decodeAccessToken(accessToken) : null;
+                        } catch (error) {
+                            console.error(error);
+                            return null;
+                        }
+                    })();
 
-          console.log('---accessTokenData---', accessTokenData);
-          set({
-            accessToken,
-            accessTokenData,
-            isAuthenticated: true,
-          });
-        },
-        clearTokens: () => {
-          set({
-            accessToken: null,
-            refreshToken: null,
-            isAuthenticated: false,
-          });
-          localStorage.removeItem('token-store'); // Xóa dữ liệu persist
-        },
-      }),
-      { name: 'token-store' }
+                    console.log("---accessTokenData---", accessTokenData);
+                    set({
+                        accessToken,
+                        accessTokenData,
+                        isAuthenticated: true,
+                    });
+                },
+                clearTokens: () => {
+                    set({
+                        accessToken: null,
+                        refreshToken: null,
+                        isAuthenticated: false,
+                    });
+                    localStorage.removeItem("token-store"); // Xóa dữ liệu persist
+                },
+            }),
+            { name: "token-store" }
+        )
     )
-  )
 );
 
 // type AuthState = {
