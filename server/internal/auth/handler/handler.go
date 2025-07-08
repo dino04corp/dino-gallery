@@ -38,16 +38,26 @@ func (h *AuthHandler) Register(c *gin.Context) {
 func (h *AuthHandler) Login(c *gin.Context) {
 	var req dto.LoginRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{
+			"status": "error",
+			"error":  "Invalid request payload: " + err.Error(),
+		})
 		return
 	}
 
 	token, err := h.service.Login(req.Username, req.Password)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"status": "error",
+			"error":  "Unauthorized: " + err.Error(),
+		})
 		return
 	}
 
-	res := dto.AuthResponse{AccessToken: token}
-	c.JSON(http.StatusOK, res)
+	c.JSON(http.StatusOK, dto.SuccessResponse{
+		Status: "success",
+		Data: gin.H{
+			"access_token": token,
+		},
+	})
 }
