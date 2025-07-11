@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { register } from "@/services/api/AuthService";
+import { register } from "@/api/auth";
 import { useAuthStore } from "@/store";
 import { useMutation } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";

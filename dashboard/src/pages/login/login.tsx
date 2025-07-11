@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router";
 import { useMutation } from "@tanstack/react-query";
-import { login } from "@/services/api/AuthService";
+import { login } from "@/api/auth";
 import { LoaderCircle } from "lucide-react";
 import { useAuthStore } from "@/store";
 
