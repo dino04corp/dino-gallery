@@ -169,4 +169,39 @@ export const mockStorages: StorageConfig[] = [
             ],
         },
     },
+    {
+        id: "storage-6",
+        name: "Cloudinary CDN",
+        type: "cloudinary",
+        isActive: true,
+        createdAt: "2024-07-07T10:00:00Z",
+        lastSync: "2024-07-08T12:30:00Z",
+        config: {
+            cloudName: "mycloudname",
+            apiKey: "123456789012345",
+            apiSecret: "***************",
+            uploadPreset: "default_preset",
+        },
+        usage: {
+            used: 80,
+            total: 300,
+            unit: "GB",
+        },
+        health: {
+            status: "healthy",
+            lastCheck: "2024-07-08T11:00:00Z",
+            responseTime: 95,
+        },
+        analytics: {
+            uploadCount: 980,
+            downloadCount: 2600,
+            totalFiles: 8900,
+            avgResponseTime: 105,
+            uptime: 99.9,
+            dailyUsage: [
+                { date: "2024-07-01", uploads: 30, downloads: 95, storage: 75 },
+                { date: "2024-07-02", uploads: 40, downloads: 110, storage: 80 },
+            ],
+        },
+    },
 ];

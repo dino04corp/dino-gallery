@@ -52,6 +52,7 @@ export function EditStorageModal({ storage, open, onClose, onSave }: EditStorage
       azure: "Azure Blob Storage",
       local: "Local Storage",
       dropbox: "Dropbox",
+      cloudinary: "Cloudinary",
     }
     return labels[type as keyof typeof labels] || type.toUpperCase()
   }

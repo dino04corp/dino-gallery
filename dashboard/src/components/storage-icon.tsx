@@ -1,4 +1,4 @@
-import { Cloud, Database, HardDrive, Droplets } from "lucide-react"
+import { Cloud, Database, HardDrive, Droplets, CloudUpload } from "lucide-react"
 import type { StorageType } from "@/types/storage"
 
 interface StorageIconProps {
@@ -13,7 +13,8 @@ export function StorageIcon({ type, className = "w-5 h-5" }: StorageIconProps) {
     azure: Cloud,
     local: HardDrive,
     dropbox: Droplets,
-  }
+    cloudinary: CloudUpload,
+  };
 
   const Icon = icons[type] || Database
 

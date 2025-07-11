@@ -63,6 +63,7 @@ export function StorageCard({
       azure: "Azure Blob",
       local: "Local Storage",
       dropbox: "Dropbox",
+      cloudinary: "Cloudinary",
     };
     return labels[type as keyof typeof labels] || type.toUpperCase();
   };

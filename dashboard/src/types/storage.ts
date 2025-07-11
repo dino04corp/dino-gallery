@@ -1,4 +1,4 @@
-export type StorageType = "s3" | "gcs" | "local" | "azure" | "dropbox";
+export type StorageType = "s3" | "gcs" | "local" | "azure" | "dropbox" | "cloudinary";
 
 export interface StorageConfig {
     id: string;

@@ -30,6 +30,7 @@ export function CreateStorageModal({ onCreateStorage }: CreateStorageModalProps)
     { value: "azure", label: "Azure Blob Storage", description: "Microsoft Azure" },
     { value: "local", label: "Local Storage", description: "Local file system" },
     { value: "dropbox", label: "Dropbox", description: "Dropbox cloud storage" },
+    { value: "cloudinary", label: "Cloudinary", description: "Cloudinary storage" },
   ];
 
   const getConfigFields = (type: StorageType) => {
@@ -64,6 +65,12 @@ export function CreateStorageModal({ onCreateStorage }: CreateStorageModalProps)
         { key: "appKey", label: "App Key", placeholder: "Dropbox app key", required: true },
         { key: "appSecret", label: "App Secret", placeholder: "Dropbox app secret", type: "password", required: true },
         { key: "accessToken", label: "Access Token", placeholder: "sl...", type: "password", required: true },
+      ],
+      cloudinary: [
+        { key: "cloudName", label: "Cloud Name", placeholder: "mycloud", required: true },
+        { key: "apiKey", label: "API Key", placeholder: "1234567890", required: true },
+        { key: "apiSecret", label: "API Secret", placeholder: "********", type: "password", required: true },
+        { key: "uploadPreset", label: "Upload Preset", placeholder: "default_preset", required: false },
       ],
     };
     return fields[type] || [];
