@@ -20,5 +20,7 @@ type Storage struct {
 	Name     string                   `gorm:"column:name;type:varchar(255);not null;index"`
 	Provider constant.StorageProvider `gorm:"column:provider;type:varchar(255);not null"`
 	Config   datatypes.JSONMap        `gorm:"column:config;type:jsonb"`
+	IsActive bool                     `gorm:"column:is_active;default:true"`
+    LastSync time.Time
 	BaseModel
 }

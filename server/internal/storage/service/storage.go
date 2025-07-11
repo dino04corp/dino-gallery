@@ -66,12 +66,6 @@ func (s *storageService) GetStorage(id string) (*model.Storage, error) {
 	return storage, nil
 }
 
-type CloudinaryConfig struct {
-	CloudName string `json:"cloud_name"`
-	APIKey    string `json:"api_key"`
-	APISecret string `json:"api_secret"`
-}
-
 // PingStorage checks the connectivity of a storage service.
 func (s *storageService) PingStorage(id string) error {
 	storage, err := s.repo.FindByID(id)
@@ -84,7 +78,7 @@ func (s *storageService) PingStorage(id string) error {
 	// This is a placeholder for demonstration purposes.
 	switch storage.Provider {
 	case constant.Cloudinary:
-		var cldCfg CloudinaryConfig
+		var cldCfg dto.CloudinaryConfig
 		configBytes, err := json.Marshal(config) // Vì datatypes.JSONMap là map[string]interface{}
 		if err != nil {
 			return fmt.Errorf("failed to marshal config: %w", err)
@@ -121,7 +115,7 @@ func (s *storageService) Upload(id string, uploadFile *dto.UploadFile) (string, 
 
 	switch storage.Provider {
 	case constant.Cloudinary:
-		var cldCfg CloudinaryConfig
+		var cldCfg dto.CloudinaryConfig
 		configBytes, err := json.Marshal(storage.Config)
 		if err != nil {
 			return "", fmt.Errorf("failed to marshal config: %w", err)
@@ -149,7 +143,7 @@ func (s *storageService) Upload(id string, uploadFile *dto.UploadFile) (string, 
 			// }
 			return uploadParam.SecureURL, nil
 		}
-        return "", fmt.Errorf("empty file")
+		return "", fmt.Errorf("empty file")
 	default:
 		return "", fmt.Errorf("unsupport provider %v", storage.Provider)
 	}
