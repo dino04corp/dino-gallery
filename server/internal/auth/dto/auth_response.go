@@ -1,7 +1,7 @@
 package dto
 
 type AuthResponse struct {
-	AccessToken string `json:"access_token"`
+	AccessToken string `json:"accessToken"`
 	ExpiresIn   int64  `json:"expires_in"`
 }
 
