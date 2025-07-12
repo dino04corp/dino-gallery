@@ -37,7 +37,7 @@ func (h *AuthHandler) Register(c *gin.Context) {
 
 func (h *AuthHandler) Login(c *gin.Context) {
 	var req dto.LoginRequest
-	if err := c.ShouldBindJSON(&req); err != nil {
+	if err := c.ShouldBind(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"status": "error",
 			"error":  "Invalid request payload: " + err.Error(),
@@ -57,7 +57,7 @@ func (h *AuthHandler) Login(c *gin.Context) {
 	c.JSON(http.StatusOK, dto.SuccessResponse{
 		Status: "success",
 		Data: gin.H{
-			"access_token": token,
+			"accessToken": token,
 		},
 	})
 }
