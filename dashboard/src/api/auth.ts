@@ -15,17 +15,30 @@ export interface RegisterParams {
 
 export async function login(params: LoginParams) {
     const usp = buildUrlParams(params);
-    console.log();
+    console.log(params);
 
-    await fetch(requestUrl("/api/v1/auth/login"), {
-        method: "POST",
-        body: usp,
-        headers: {
-            // "Content-Type": "application/json",
-            "Content-Type": "application/x-www-form-urlencoded",
-            // ...(await authenticationHeaders()),
-        },
-    }).then(handleErrors);
+    // await fetch(requestUrl("/api/v1/auth/login"), {
+    //     method: "POST",
+    //     body: usp,
+    //     headers: {
+    //         // "Content-Type": "application/json",
+    //         "Content-Type": "application/x-www-form-urlencoded",
+    //         // ...(await authenticationHeaders()),
+    //     },
+    // }).then(handleErrors);
+    const response = await handleErrors(
+        fetch(requestUrl("/api/v1/auth/login"), {
+            method: "POST",
+            body: usp,
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+        })
+    );
+
+    // ✅ Parse và return JSON (để onSuccess nhận được)
+    const json = await response.json();
+    return json;
 }
 
 export async function register(params: LoginParams) {

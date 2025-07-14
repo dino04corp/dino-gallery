@@ -7,7 +7,7 @@ import { useAuthStore } from "@/store";
 import { useMutation } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
 import { useRef } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function RegisterPage() {
   const navigate = useNavigate();

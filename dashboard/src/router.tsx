@@ -1,36 +1,36 @@
-import { createBrowserRouter } from 'react-router';
-import DashboardPage from './pages/dashboard/dashboard';
-import StoragePage from './pages/storages/storages';
-import LoginPage from './pages/login/login';
-import RegisterPage from './pages/register/register';
-import MainLayout from './layout/DashboardLayout';
-import AuthLayout from './layout/AuthLayout';
+import { createBrowserRouter } from "react-router-dom";
+import DashboardPage from "./pages/dashboard/dashboard";
+import StoragePage from "./pages/storages/storages";
+import LoginPage from "./pages/login/login";
+import RegisterPage from "./pages/register/register";
+import MainLayout from "./layout/DashboardLayout";
+import AuthLayout from "./layout/AuthLayout";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <MainLayout />,
     children: [
       {
-        path: 'dashboard',
+        path: "dashboard",
         element: <DashboardPage />,
       },
       {
-        path: '/storages',
+        path: "/storages",
         element: <StoragePage />,
       },
     ],
   },
   {
-    path: '/auth',
+    path: "/auth",
     element: <AuthLayout />,
     children: [
       {
-        path: 'login',
+        path: "login",
         element: <LoginPage />,
       },
       {
-        path: 'register',
+        path: "register",
         element: <RegisterPage />,
       },
     ],

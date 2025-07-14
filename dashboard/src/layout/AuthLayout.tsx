@@ -1,5 +1,5 @@
 import { useAuthStore } from '@/store';
-import { Navigate, Outlet } from 'react-router';
+import { Navigate, Outlet } from 'react-router-dom';
 
 export default function AuthLayout() {
   // const isAuthenticated = getIsAuthenticated();

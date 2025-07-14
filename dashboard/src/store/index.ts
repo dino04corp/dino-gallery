@@ -40,6 +40,7 @@ export const useAuthStore = create<AuthState>()(
                 setAccessToken: (accessToken: string | null) => {
                     const accessTokenData = (() => {
                         try {
+                            console.log("accessToken", accessToken);
                             return accessToken ? decodeAccessToken(accessToken) : null;
                         } catch (error) {
                             console.error(error);
