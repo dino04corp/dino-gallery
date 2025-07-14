@@ -40,7 +40,7 @@ func (h *StorageHandler) CreateStorage(c *gin.Context) {
 
 	err := h.svc.CreateStorage(&storageRequest)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create storage"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Failed to create storage"})
 		return
 	}
 

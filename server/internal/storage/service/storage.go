@@ -38,7 +38,10 @@ func NewStorageService(r repository.StorageRepo) StorageService {
 
 // Create inserts a new storage record into the database.
 func (s *storageService) CreateStorage(storage *dto.CreateStorageRequest) error {
-	newStorage := storage.ToModel()
+	if err := storage.Validate(); err != nil {
+        return err
+    }
+    newStorage := storage.ToModel()
 	return s.repo.Create(newStorage)
 }
 
