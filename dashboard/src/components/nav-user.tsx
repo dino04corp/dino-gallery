@@ -27,6 +27,7 @@ import {
 } from '@/components/ui/sidebar';
 // import { getActions, getIsAuthenticated } from '@/store';
 import { useAuthStore } from '@/store';
+import { logout } from '@/api/auth';
 
 export function NavUser({
   user,
@@ -44,6 +45,7 @@ export function NavUser({
 
   const logout = () => {
     console.log('Logging out!');
+    // await logout();
     // clearTokens();
     clearTokens();
   };

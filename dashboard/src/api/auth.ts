@@ -53,3 +53,12 @@ export async function register(params: LoginParams) {
         // },
     }).then(handleErrors);
 }
+
+export async function logout() {
+    await fetch(requestUrl("/api/v1/auth/logout"), {
+        method: "POST",
+        // headers: {
+        //     ...(await authenticationHeaders()),
+        // },
+    }).then(handleErrors);
+}

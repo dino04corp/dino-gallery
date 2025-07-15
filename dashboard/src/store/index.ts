@@ -52,7 +52,7 @@ export const useAuthStore = create<AuthState>()(
                     set({
                         accessToken,
                         accessTokenData,
-                        isAuthenticated: true,
+                        isAuthenticated: !!accessTokenData,
                     });
                 },
                 clearTokens: () => {

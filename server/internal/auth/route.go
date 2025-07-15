@@ -23,7 +23,7 @@ func RegisterRoutes(rg *gin.RouterGroup, db *gorm.DB) {
 	// group.GET("/verify", h.CreateUser)      // Xác thực email nếu dùng OTP
 
 	// Protected Routes
-	// group.POST("/logout", h.Logout) // Đăng xuất, xóa token (nếu lưu)
+	group.POST("/logout", h.Logout) // Đăng xuất, xóa token (nếu lưu)
 	// group.GET("/profile", h.CreateUser)  // Lấy thông tin người dùng đã đăng nhập
 	// group.PUT("/profile", h.CreateUser)  // Cập nhật thông tin người dùng đã đăng nhập
 	// group.PUT("/password", h.CreateUser) // Cập nhật mật khẩu người dùng đã đăng nhập

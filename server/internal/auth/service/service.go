@@ -16,6 +16,7 @@ import (
 type AuthService interface {
 	Register(email, password string) (string, error)
 	Login(email, password string) (string, error)
+	Logout(token string) error
 }
 
 type authService struct {
@@ -59,4 +60,9 @@ func (s *authService) Login(username, password string) (string, error) {
 	}
 
 	return jwtToken, nil
+}
+
+func (s *authService) Logout(token string) error {
+	// TODO: Implement token invalidation logic here
+	return nil
 }

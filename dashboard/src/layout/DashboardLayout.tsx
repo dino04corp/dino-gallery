@@ -16,14 +16,9 @@ export default function MainLayout() {
   // const isAuthenticated = getIsAuthenticated();
   const { isAuthenticated } = useAuthStore((state) => state);
 
-  // ""
-  // if (!isAuthenticated) {
-  //   return <Navigate to={'/auth/login'} replace />;
-  // }
-
   if (!isAuthenticated) {
     console.log("MainLayout");
-    // return <Navigate to={"/auth/login"} replace />;
+    return <Navigate to={"/auth/login"} replace />;
   }
 
   return (

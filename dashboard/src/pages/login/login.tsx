@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LoaderCircle } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
-import { useField, useForm } from "@tanstack/react-form";
+import { useForm } from "@tanstack/react-form";
 import { useAuthStore } from "@/store";
 import { login } from "@/api/auth";
 import { Button } from "@/components/ui/button";
@@ -20,13 +20,14 @@ export default function LoginPage() {
     onSuccess: (response) => {
       console.log(response);
       const token = response?.data?.accessToken;
+      console.log("Token from API:", token);
       if (!token) return setErrorMessage("Invalid token");
       setAccessToken(token);
 
       navigate("/dashboard");
     },
     onError: (error: any) => {
-      console.error("Login error", error);
+      console.log("Login error", error);
       const msg = error?.response?.data?.error || error?.response?.data?.message || error?.message || "Something went wrong";
       setErrorMessage(msg);
     },
@@ -60,9 +61,11 @@ export default function LoginPage() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              e.stopPropagation();
+              form.handleSubmit(e); // <-- truyền event vào!
             }}
             className="flex flex-col gap-6"
+            aria-busy={loading}
+            noValidate
           >
             <form.Field
               name="username"
@@ -98,15 +101,6 @@ export default function LoginPage() {
                   if (value.length < 6) {
                     return "Password must be least 6 characters long";
                   }
-                  // if (!/[A-Z]/.test(value)) {
-                  //   return "Password must contain at least one uppercase letter";
-                  // }
-                  // if (!/[a-z]/.test(value)) {
-                  //   return "Password must contain at least one lowercase letter";
-                  // }
-                  // if (!/[0-9]/.test(value)) {
-                  //   return "Password must contain at least one number";
-                  // }
                 },
               }}
               children={(field) => (
@@ -114,10 +108,10 @@ export default function LoginPage() {
                   <Label htmlFor="password">Password</Label>
                   <Input
                     id="password"
-                    type="text"
+                    type="password"
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
-                    autoComplete="password"
+                    autoComplete="current-password"
                     disabled={loading}
                     required
                   />
@@ -125,41 +119,16 @@ export default function LoginPage() {
                 </div>
               )}
             />
-            {/* <div className="grid gap-2">
-              <Label htmlFor={usernameField.name}>Username</Label>
-              <Input
-                id={usernameField.name}
-                type="text"
-                value={usernameField.state.value}
-                onChange={(e) => usernameField.handleChange(e.target.value)}
-                autoComplete="username"
-                disabled={loading}
-                required
-              />
-            </div> */}
 
-            {/* <div className="grid gap-2">
-              <Label htmlFor={passwordField.name}>Password</Label>
-              <Input
-                id={passwordField.name}
-                type="password"
-                value={passwordField.state.value}
-                onChange={(e) => passwordField.handleChange(e.target.value)}
-                autoComplete="current-password"
-                disabled={loading}
-                required
-              />
-            </div> */}
+            {errorMessage && <div className="text-red-500 text-sm -mt-2 text-center">{errorMessage}</div>}
 
-            {errorMessage && <div className="text-red-500 text-sm -mt-2">{errorMessage}</div>}
-
-            <div className="flex items-center">
-              <a href="#" className="ml-auto inline-block text-sm underline-offset-4 hover:underline">
+            <div className="flex items-center mb-2">
+              <a href="#" className="ml-auto text-sm underline-offset-4 hover:underline">
                 Forgot your password?
               </a>
             </div>
 
-            <Button type="submit" className="w-full" onClick={form.handleSubmit} disabled={loading}>
+            <Button type="submit" className="w-full" disabled={loading} aria-busy={loading}>
               {loading ? (
                 <>
                   <LoaderCircle className="animate-spin mr-2 w-4 h-4" />
@@ -169,6 +138,12 @@ export default function LoginPage() {
                 "Login"
               )}
             </Button>
+
+            <div className="flex items-center my-2">
+              <div className="flex-grow border-t border-gray-200" />
+              <span className="mx-2 text-xs text-gray-400">or</span>
+              <div className="flex-grow border-t border-gray-200" />
+            </div>
 
             <Button variant="outline" className="w-full" disabled={loading}>
               Login with Google
